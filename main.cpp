@@ -64,7 +64,7 @@ int main() {
             FRAME_HEIGHT
         ));
 
-        window.clear(sf::Color(50, 200, 50)); 
+        window.clear(sf::Color::Black); 
         window.draw(player);
         window.display();
     }
