@@ -7,7 +7,7 @@ int main() {
 
     // Load spritesheet
     sf::Texture sheet;
-    if (!sheet.loadFromFile("C:/Users/User/GE_coursework/resources/dequavious.png")) {
+    if (!sheet.loadFromFile("C:/Users/User/GE_coursework/resources/character.png")) {
         std::cerr << "Failed to load spritesheet!" << std::endl;
         return -1;
     }
@@ -45,14 +45,12 @@ int main() {
         if (movingRight)
             player.move(3.f, 0.f);
 
-        // Animation
         animationTimer += 0.1f;
         if (animationTimer >= 1.f) {
             animationTimer = 0.f;
-            currentFrame = (currentFrame + 1) % 8; // 8 frames per row
+            currentFrame = (currentFrame + 1) % 8; 
         }
 
-        // Select correct row:
         // Row 0 = walking right
         // Row 1 = walking left
         int row = 0;
@@ -66,8 +64,7 @@ int main() {
             FRAME_HEIGHT
         ));
 
-        // Draw
-        window.clear(sf::Color(50, 200, 50)); // green background
+        window.clear(sf::Color(50, 200, 50)); 
         window.draw(player);
         window.display();
     }
