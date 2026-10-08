@@ -1,0 +1,346 @@
+{
+	"configurations" : 
+	[
+		{
+			"abstractTargets" : 
+			[
+				{
+					"directoryIndex" : 8,
+					"id" : "FLAC::@2c88909a109778213ad3",
+					"jsonFile" : "target-FLAC-Debug-cd9ba790a4b3168a09fc.json",
+					"name" : "FLAC",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "Freetype::@05826a7f30b7c69d94d4",
+					"jsonFile" : "target-Freetype-Debug-bb8b0e7de08bbc0ff918.json",
+					"name" : "Freetype",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "OpenAL::OpenAL::@2c88909a109778213ad3",
+					"jsonFile" : "target-OpenAL__OpenAL-Debug-db73b1358ab11fcb4d61.json",
+					"name" : "OpenAL::OpenAL",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "OpenGL::@662453be02e81ddd067b",
+					"jsonFile" : "target-OpenGL-Debug-adeff03983ddcc02b6f6.json",
+					"name" : "OpenGL",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "OpenGL::GL::@662453be02e81ddd067b",
+					"jsonFile" : "target-OpenGL__GL-Debug-d33df04d758fde5c3ce3.json",
+					"name" : "OpenGL::GL",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "OpenGL::GLU::@662453be02e81ddd067b",
+					"jsonFile" : "target-OpenGL__GLU-Debug-0408e62cbd0eca8d4868.json",
+					"name" : "OpenGL::GLU",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "VORBIS::@2c88909a109778213ad3",
+					"jsonFile" : "target-VORBIS-Debug-b542f6d111de3b3cebb8.json",
+					"name" : "VORBIS",
+					"projectIndex" : 1
+				}
+			],
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"childIndexes" : 
+					[
+						1
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-f040eec181a89de70dbe.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.11"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"build" : "lib/SFML",
+					"childIndexes" : 
+					[
+						2
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-lib.SFML-Debug-010e7dc20d4a9b2d1a46.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.7.2"
+					},
+					"parentIndex" : 0,
+					"projectIndex" : 1,
+					"source" : "lib/SFML"
+				},
+				{
+					"build" : "lib/SFML/src/SFML",
+					"childIndexes" : 
+					[
+						3,
+						4,
+						5,
+						6,
+						7,
+						8
+					],
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-lib.SFML.src.SFML-Debug-d97847e8f2bd2b47990a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.7.2"
+					},
+					"parentIndex" : 1,
+					"projectIndex" : 1,
+					"source" : "lib/SFML/src/SFML"
+				},
+				{
+					"build" : "lib/SFML/src/SFML/System",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-lib.SFML.src.SFML.System-Debug-5e9e85fbe52fbe3e456a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.7.2"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "lib/SFML/src/SFML/System",
+					"targetIndexes" : 
+					[
+						5
+					]
+				},
+				{
+					"build" : "lib/SFML/src/SFML/Main",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-lib.SFML.src.SFML.Main-Debug-b9d092318b0b56af0837.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.7.2"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "lib/SFML/src/SFML/Main",
+					"targetIndexes" : 
+					[
+						3
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						3,
+						4,
+						5
+					],
+					"build" : "lib/SFML/src/SFML/Window",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-lib.SFML.src.SFML.Window-Debug-6b98ce1b1f749334e91b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.7.2"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "lib/SFML/src/SFML/Window",
+					"targetIndexes" : 
+					[
+						6
+					]
+				},
+				{
+					"build" : "lib/SFML/src/SFML/Network",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-lib.SFML.src.SFML.Network-Debug-9a377d6cd0465192427b.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.7.2"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "lib/SFML/src/SFML/Network",
+					"targetIndexes" : 
+					[
+						4
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						1
+					],
+					"build" : "lib/SFML/src/SFML/Graphics",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-lib.SFML.src.SFML.Graphics-Debug-586f771cc37ae9b4ed0a.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.7.2"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "lib/SFML/src/SFML/Graphics",
+					"targetIndexes" : 
+					[
+						2
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0,
+						2,
+						6
+					],
+					"build" : "lib/SFML/src/SFML/Audio",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-lib.SFML.src.SFML.Audio-Debug-dbdcc542358c47a0e8f2.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.7.2"
+					},
+					"parentIndex" : 2,
+					"projectIndex" : 1,
+					"source" : "lib/SFML/src/SFML/Audio",
+					"targetIndexes" : 
+					[
+						1
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"childIndexes" : 
+					[
+						1
+					],
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "setup",
+					"targetIndexes" : 
+					[
+						0
+					]
+				},
+				{
+					"abstractTargetIndexes" : 
+					[
+						0,
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					],
+					"directoryIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						6,
+						7,
+						8
+					],
+					"name" : "SFML",
+					"parentIndex" : 0,
+					"targetIndexes" : 
+					[
+						1,
+						2,
+						3,
+						4,
+						5,
+						6
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "GE_coursework::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-GE_coursework-Debug-7a49b4f4f4cb0c06bcbf.json",
+					"name" : "GE_coursework",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 8,
+					"id" : "sfml-audio::@2c88909a109778213ad3",
+					"jsonFile" : "target-sfml-audio-Debug-4049c1ae48049dd5812e.json",
+					"name" : "sfml-audio",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 7,
+					"id" : "sfml-graphics::@05826a7f30b7c69d94d4",
+					"jsonFile" : "target-sfml-graphics-Debug-94bde95ff9a8c0d42c0e.json",
+					"name" : "sfml-graphics",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 4,
+					"id" : "sfml-main::@4d6cc2d9f74f742f1a09",
+					"jsonFile" : "target-sfml-main-Debug-307974fbc3e5047fac0f.json",
+					"name" : "sfml-main",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 6,
+					"id" : "sfml-network::@c3d7f79628bafd5c7994",
+					"jsonFile" : "target-sfml-network-Debug-a8e3f0375f5c8474cef8.json",
+					"name" : "sfml-network",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 3,
+					"id" : "sfml-system::@a0857d3fa2d27435d485",
+					"jsonFile" : "target-sfml-system-Debug-8a847b998d946d4260a7.json",
+					"name" : "sfml-system",
+					"projectIndex" : 1
+				},
+				{
+					"directoryIndex" : 5,
+					"id" : "sfml-window::@662453be02e81ddd067b",
+					"jsonFile" : "target-sfml-window-Debug-ddd0e1d532962d0b350c.json",
+					"name" : "sfml-window",
+					"projectIndex" : 1
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "C:/Users/User/GE_coursework/out/build/x64-Debug",
+		"source" : "C:/Users/User/GE_coursework"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 10
+	}
+}

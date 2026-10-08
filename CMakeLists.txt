@@ -17,5 +17,5 @@ link_directories("${CMAKE_BINARY_DIR}/lib/SFML/lib")
 
 #### Practical 1 ####
 add_executable(GE_coursework main.cpp)
-target_include_directories(GE_courseworkPRIVATE ${SFML_INCS})
+target_include_directories(GE_coursework PRIVATE ${SFML_INCS})
 target_link_libraries(GE_coursework sfml-graphics)

@@ -1,0 +1,15 @@
+{
+	"InstallScripts" : 
+	[
+		"C:/Users/User/GE_coursework/out/build/x64-Debug/cmake_install.cmake",
+		"C:/Users/User/GE_coursework/out/build/x64-Debug/lib/SFML/cmake_install.cmake",
+		"C:/Users/User/GE_coursework/out/build/x64-Debug/lib/SFML/src/SFML/cmake_install.cmake",
+		"C:/Users/User/GE_coursework/out/build/x64-Debug/lib/SFML/src/SFML/System/cmake_install.cmake",
+		"C:/Users/User/GE_coursework/out/build/x64-Debug/lib/SFML/src/SFML/Main/cmake_install.cmake",
+		"C:/Users/User/GE_coursework/out/build/x64-Debug/lib/SFML/src/SFML/Window/cmake_install.cmake",
+		"C:/Users/User/GE_coursework/out/build/x64-Debug/lib/SFML/src/SFML/Network/cmake_install.cmake",
+		"C:/Users/User/GE_coursework/out/build/x64-Debug/lib/SFML/src/SFML/Graphics/cmake_install.cmake",
+		"C:/Users/User/GE_coursework/out/build/x64-Debug/lib/SFML/src/SFML/Audio/cmake_install.cmake"
+	],
+	"Parallel" : false
+}
