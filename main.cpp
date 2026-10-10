@@ -7,7 +7,7 @@ int main() {
 
     // Load spritesheet
     sf::Texture sheet;
-    if (!sheet.loadFromFile("C:/Users/User/GE_coursework/resources/character.png")) {
+    if (!sheet.loadFromFile("C:/Users/User/GE_coursework/resources/davequavious.png")) {
         std::cerr << "Failed to load spritesheet!" << std::endl;
         return -1;
     }
@@ -24,6 +24,8 @@ int main() {
 
     bool movingLeft = false;
     bool movingRight = false;
+    bool movingForward = false;
+    bool movingBackward = false;
 
     while (window.isOpen()) {
         sf::Event event;
@@ -39,16 +41,38 @@ int main() {
         movingRight = sf::Keyboard::isKeyPressed(sf::Keyboard::D) ||
             sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
 
+        movingForward = sf::Keyboard::isKeyPressed(sf::Keyboard::S) ||
+            sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
+
+        movingBackward = sf::Keyboard::isKeyPressed(sf::Keyboard::W) ||
+            sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
+
         // Update position
         if (movingLeft)
             player.move(-3.f, 0.f);
         if (movingRight)
             player.move(3.f, 0.f);
+        if (movingForward)   
+            player.move(0.f, 3.f);
+        if (movingBackward)  
+            player.move(0.f, -3.f);
 
         animationTimer += 0.1f;
         if (animationTimer >= 1.f) {
             animationTimer = 0.f;
             currentFrame = (currentFrame + 1) % 8; 
+        }
+        bool isMoving = movingLeft || movingRight || movingForward || movingBackward;
+
+        if (isMoving) {
+            animationTimer += 0.1f;
+            if (animationTimer >= 1.f) {
+                animationTimer = 0.f;
+                currentFrame = (currentFrame + 1) % 8; 
+            }
+        }
+        else {
+            currentFrame = 0; // idle frame
         }
 
         // Row 0 = walking right
@@ -56,6 +80,8 @@ int main() {
         int row = 0;
         if (movingLeft) row = 0;
         if (movingRight) row = 1;
+        if (movingForward) row = 2;
+        if (movingBackward) row = 3;
 
         player.setTextureRect(sf::IntRect(
             currentFrame * FRAME_WIDTH,
