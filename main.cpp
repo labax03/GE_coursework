@@ -57,27 +57,26 @@ int main() {
         if (movingBackward)  
             player.move(0.f, -3.f);
 
+        bool isMoving = movingLeft || movingRight || movingBackward || movingForward;
+
         animationTimer += 0.1f;
-        if (animationTimer >= 1.f) {
-            animationTimer = 0.f;
-            currentFrame = (currentFrame + 1) % 8; 
-        }
-        bool isMoving = movingLeft || movingRight || movingForward || movingBackward;
 
         if (isMoving) {
-            animationTimer += 0.1f;
             if (animationTimer >= 1.f) {
                 animationTimer = 0.f;
                 currentFrame = (currentFrame + 1) % 8; 
             }
         }
         else {
-            currentFrame = 0; // idle frame
+            if (animationTimer >= 1.f) {
+                animationTimer = 0.f;
+                currentFrame = (currentFrame + 1) % 4; 
+            }
         }
 
         // Row 0 = walking right
         // Row 1 = walking left
-        int row = 0;
+        int row = 4;
         if (movingLeft) row = 0;
         if (movingRight) row = 1;
         if (movingForward) row = 2;
