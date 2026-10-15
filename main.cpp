@@ -28,12 +28,23 @@ int main()
         return -1;
     }
 
-    // Create player using Dave by default
-    sf::Sprite player(davequaviousTexture);
-    player.setPosition(400.f, 300.f);
+    // Optional: smoother scaling
+    davequaviousTexture.setSmooth(false);
+    orcTexture.setSmooth(false);
 
     const int FRAME_WIDTH = 64;
     const int FRAME_HEIGHT = 64;
+
+    // Create player sprite
+    sf::Sprite player(davequaviousTexture);
+
+    // Centre origin so scaling looks better
+    player.setOrigin(
+        FRAME_WIDTH / 2.0f,
+        FRAME_HEIGHT / 2.0f
+    );
+
+    player.setPosition(400.f, 300.f);
 
     int currentFrame = 0;
     float animationTimer = 0.f;
@@ -54,19 +65,24 @@ int main()
 
             if (event.type == sf::Event::KeyPressed)
             {
-                // Switch character to Dave
+                // Dave
                 if (event.key.code == sf::Keyboard::Num1)
                 {
                     player.setTexture(davequaviousTexture);
+                    player.setScale(1.0f, 1.0f);
                     currentFrame = 0;
 
                     std::cout << "Dave selected" << std::endl;
                 }
 
-                // Switch character to Orc
+                // Orc
                 if (event.key.code == sf::Keyboard::Num2)
                 {
                     player.setTexture(orcTexture);
+
+                    // Make orc bigger
+                    player.setScale(1.5f, 1.5f);
+
                     currentFrame = 0;
 
                     std::cout << "Orc selected" << std::endl;
@@ -74,7 +90,7 @@ int main()
             }
         }
 
-        // Movement input
+        // Movement Input
         movingLeft =
             sf::Keyboard::isKeyPressed(sf::Keyboard::A) ||
             sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
