@@ -15,7 +15,7 @@ int main()
     if (!davequaviousTexture.loadFromFile(
         "C:/Users/User/GE_coursework/resources/davequavious.png"))
     {
-        std::cerr << "Failed to load davequavious.png!" << std::endl;
+        std::cerr << "Failed to load davequavious.png" << std::endl;
         return -1;
     }
 
@@ -24,7 +24,16 @@ int main()
     if (!orcTexture.loadFromFile(
         "C:/Users/User/GE_coursework/resources/unnamed_orc.png"))
     {
-        std::cerr << "Failed to load unnamed_orc.png!" << std::endl;
+        std::cerr << "Failed to load unnamed_orc.png" << std::endl;
+        return -1;
+    }
+
+    // Load elf spritesheet
+    sf::Texture elfTexture;
+    if (!elfTexture.loadFromFile(
+        "C:/Users/User/GE_coursework/resources/elf.png"))
+    {
+        std::cerr << "Failed to load elf.png" << std::endl;
         return -1;
     }
 
@@ -86,6 +95,18 @@ int main()
                     currentFrame = 0;
 
                     std::cout << "Orc selected" << std::endl;
+                }
+                // elf
+                if (event.key.code == sf::Keyboard::Num3)
+                {
+                    player.setTexture(elfTexture);
+
+                    // Make orc bigger
+                    player.setScale(1.5f, 1.5f);
+
+                    currentFrame = 0;
+
+                    std::cout << "elf selected" << std::endl;
                 }
             }
         }
