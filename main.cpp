@@ -22,9 +22,9 @@ int main()
     // Load Orc spritesheet
     sf::Texture orcTexture;
     if (!orcTexture.loadFromFile(
-        "C:/Users/User/GE_coursework/resources/unnamed_orc.png"))
+        "C:/Users/User/GE_coursework/resources/orc.png"))
     {
-        std::cerr << "Failed to load unnamed_orc.png" << std::endl;
+        std::cerr << "Failed to load orc.png" << std::endl;
         return -1;
     }
 
@@ -34,6 +34,15 @@ int main()
         "C:/Users/User/GE_coursework/resources/elf.png"))
     {
         std::cerr << "Failed to load elf.png" << std::endl;
+        return -1;
+    }
+
+    // Load knight spritesheet
+    sf::Texture knightTexture;
+    if (!knightTexture.loadFromFile(
+        "C:/Users/User/GE_coursework/resources/knight.png"))
+    {
+        std::cerr << "Failed to load knight.png" << std::endl;
         return -1;
     }
 
@@ -107,6 +116,18 @@ int main()
                     currentFrame = 0;
 
                     std::cout << "elf selected" << std::endl;
+                }
+                // knight
+                if (event.key.code == sf::Keyboard::Num4)
+                {
+                    player.setTexture(knightTexture);
+
+                    // Make orc bigger
+                    player.setScale(1.5f, 1.5f);
+
+                    currentFrame = 0;
+
+                    std::cout << "knight selected" << std::endl;
                 }
             }
         }
