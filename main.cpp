@@ -13,37 +13,33 @@ int main()
     // Load Dave spritesheet
     sf::Texture davequaviousTexture;
     if (!davequaviousTexture.loadFromFile(
-        "C:/Users/User/GE_coursework/resources/davequavious.png"))
+        "Debug/res/davequavious.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
         std::cerr << "Failed to load davequavious.png" << std::endl;
-        return -1;
     }
 
     // Load Orc spritesheet
     sf::Texture orcTexture;
     if (!orcTexture.loadFromFile(
-        "C:/Users/User/GE_coursework/resources/orc.png"))
+        "Debug/res/orc.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
         std::cerr << "Failed to load orc.png" << std::endl;
-        return -1;
     }
 
     // Load elf spritesheet
     sf::Texture elfTexture;
     if (!elfTexture.loadFromFile(
-        "C:/Users/User/GE_coursework/resources/elf.png"))
+        "Debug/res/elf.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
         std::cerr << "Failed to load elf.png" << std::endl;
-        return -1;
     }
 
     // Load knight spritesheet
     sf::Texture knightTexture;
     if (!knightTexture.loadFromFile(
-        "C:/Users/User/GE_coursework/resources/knight.png"))
+        "Debug/res/knight.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
         std::cerr << "Failed to load knight.png" << std::endl;
-        return -1;
     }
 
     // Optional: smoother scaling
