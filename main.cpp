@@ -1,17 +1,33 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
 
-int main()
-{
-    sf::RenderWindow window(
-        sf::VideoMode(800, 600),
-        "Character Selection"
-    );
+const int FRAME_WIDTH = 64;
+const int FRAME_HEIGHT = 64;
 
-    window.setFramerateLimit(60);
+const sf::Keyboard::Key controls[8] = {
+    sf::Keyboard::W,   // Player UP
+    sf::Keyboard::S,   // Player Down
+    sf::Keyboard::A,  // Player Left
+    sf::Keyboard::D, // Player Right
+    sf::Keyboard::Num1,
+    sf::Keyboard::Num2,
+    sf::Keyboard::Num3,
+    sf::Keyboard::Num4
+};
 
+sf::Sprite player;
+
+const float time_step = 0.017f; //60 fps
+
+sf::Texture davequaviousTexture;
+sf::Texture orcTexture;
+sf::Texture elfTexture;
+sf::Texture knightTexture;
+
+/// <summary>/// /// </summary>
+
+void init() {
     // Load Dave spritesheet
-    sf::Texture davequaviousTexture;
     if (!davequaviousTexture.loadFromFile(
         "Debug/res/davequavious.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
@@ -19,7 +35,6 @@ int main()
     }
 
     // Load Orc spritesheet
-    sf::Texture orcTexture;
     if (!orcTexture.loadFromFile(
         "Debug/res/orc.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
@@ -27,7 +42,6 @@ int main()
     }
 
     // Load elf spritesheet
-    sf::Texture elfTexture;
     if (!elfTexture.loadFromFile(
         "Debug/res/elf.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
@@ -35,7 +49,6 @@ int main()
     }
 
     // Load knight spritesheet
-    sf::Texture knightTexture;
     if (!knightTexture.loadFromFile(
         "Debug/res/knight.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
@@ -46,11 +59,8 @@ int main()
     davequaviousTexture.setSmooth(false);
     orcTexture.setSmooth(false);
 
-    const int FRAME_WIDTH = 64;
-    const int FRAME_HEIGHT = 64;
-
     // Create player sprite
-    sf::Sprite player(davequaviousTexture);
+    player.setTexture(davequaviousTexture);
 
     // Centre origin so scaling looks better
     player.setOrigin(
@@ -59,155 +69,93 @@ int main()
     );
 
     player.setPosition(400.f, 300.f);
+}
 
+void update(float dt) {
     int currentFrame = 0;
     float animationTimer = 0.f;
+    int row = 4;
 
-    bool movingLeft = false;
-    bool movingRight = false;
-    bool movingForward = false;
-    bool movingBackward = false;
-
-    while (window.isOpen())
-    {
-        sf::Event event;
-
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-
-            if (event.type == sf::Event::KeyPressed)
-            {
-                // Dave
-                if (event.key.code == sf::Keyboard::Num1)
-                {
-                    player.setTexture(davequaviousTexture);
-                    player.setScale(1.0f, 1.0f);
-                    currentFrame = 0;
-
-                    std::cout << "Dave selected" << std::endl;
-                }
-
-                // Orc
-                if (event.key.code == sf::Keyboard::Num2)
-                {
-                    player.setTexture(orcTexture);
-
-                    // Make orc bigger
-                    player.setScale(1.5f, 1.5f);
-
-                    currentFrame = 0;
-
-                    std::cout << "Orc selected" << std::endl;
-                }
-                // elf
-                if (event.key.code == sf::Keyboard::Num3)
-                {
-                    player.setTexture(elfTexture);
-
-                    // Make orc bigger
-                    player.setScale(1.5f, 1.5f);
-
-                    currentFrame = 0;
-
-                    std::cout << "elf selected" << std::endl;
-                }
-                // knight
-                if (event.key.code == sf::Keyboard::Num4)
-                {
-                    player.setTexture(knightTexture);
-
-                    // Make orc bigger
-                    player.setScale(1.5f, 1.5f);
-
-                    currentFrame = 0;
-
-                    std::cout << "knight selected" << std::endl;
-                }
-            }
+    if (sf::Keyboard::isKeyPressed(controls[0])) { // UP
+        player.move(0.f, -3.f);
+        row = 3;
         }
-
-        // Movement Input
-        movingLeft =
-            sf::Keyboard::isKeyPressed(sf::Keyboard::A) ||
-            sf::Keyboard::isKeyPressed(sf::Keyboard::Left);
-
-        movingRight =
-            sf::Keyboard::isKeyPressed(sf::Keyboard::D) ||
-            sf::Keyboard::isKeyPressed(sf::Keyboard::Right);
-
-        movingForward =
-            sf::Keyboard::isKeyPressed(sf::Keyboard::S) ||
-            sf::Keyboard::isKeyPressed(sf::Keyboard::Down);
-
-        movingBackward =
-            sf::Keyboard::isKeyPressed(sf::Keyboard::W) ||
-            sf::Keyboard::isKeyPressed(sf::Keyboard::Up);
-
-        // Movement
-        if (movingLeft)
-            player.move(-3.f, 0.f);
-
-        if (movingRight)
-            player.move(3.f, 0.f);
-
-        if (movingForward)
+    if (sf::Keyboard::isKeyPressed(controls[1])) { // DOWN
             player.move(0.f, 3.f);
-
-        if (movingBackward)
-            player.move(0.f, -3.f);
-
-        bool isMoving =
-            movingLeft ||
-            movingRight ||
-            movingForward ||
-            movingBackward;
-
-        // Animation
-        animationTimer += 0.1f;
-
-        if (isMoving)
-        {
-            if (animationTimer >= 1.f)
-            {
-                animationTimer = 0.f;
-                currentFrame = (currentFrame + 1) % 8;
-            }
-        }
-        else
-        {
-            if (animationTimer >= 1.f)
-            {
-                animationTimer = 0.f;
-                currentFrame = (currentFrame + 1) % 4;
-            }
-        }
-
-        int row = 4;
-
-        if (movingLeft)
-            row = 0;
-        else if (movingRight)
-            row = 1;
-        else if (movingForward)
             row = 2;
-        else if (movingBackward)
-            row = 3;
+        }
 
-        player.setTextureRect(
-            sf::IntRect(
-                currentFrame * FRAME_WIDTH,
-                row * FRAME_HEIGHT,
-                FRAME_WIDTH,
-                FRAME_HEIGHT
-            )
-        );
+    if (sf::Keyboard::isKeyPressed(controls[2])) { // LEFT
+            player.move(-3.f, 0.f);
+            row = 0;
+        }
 
-        window.clear(sf::Color::Black);
-        window.draw(player);
-        window.display();
+    if (sf::Keyboard::isKeyPressed(controls[3])) { // RIGHT
+            player.move(3.f, 0.f);
+            row = 1;
+        }
+    if (sf::Keyboard::isKeyPressed(controls[4])) { // Dave
+        player.setTexture(davequaviousTexture);
+    }
+    if (sf::Keyboard::isKeyPressed(controls[5])) { // orc
+        player.setTexture(orcTexture);
+    }
+    if (sf::Keyboard::isKeyPressed(controls[6])) { // elf
+        player.setTexture(elfTexture);
+    }
+    if (sf::Keyboard::isKeyPressed(controls[7])) { // knight
+        player.setTexture(knightTexture);
     }
 
-    return 0;
+    
+    animationTimer += 0.1f;
+    if (sf::Keyboard::isKeyPressed(controls[0]) ||
+        sf::Keyboard::isKeyPressed(controls[1]) ||
+        sf::Keyboard::isKeyPressed(controls[2]) ||
+        sf::Keyboard::isKeyPressed(controls[3])) {
+
+        if (animationTimer >= 1.f){
+                animationTimer = 0.f;
+                currentFrame = (currentFrame + 1) % 8;
+        }
+    }
+    else{
+        if (animationTimer >= 1.f){
+            animationTimer = 0.f;
+            currentFrame = (currentFrame + 1) % 4;
+        }
+     }
+
+
+    player.setTextureRect(
+        sf::IntRect(
+            currentFrame * FRAME_WIDTH,
+            row * FRAME_HEIGHT,
+            FRAME_WIDTH,
+            FRAME_HEIGHT
+        )
+    );
+}
+
+void render(sf::RenderWindow& window){
+    window.draw(player);
+
+}
+
+int main() {
+    sf::RenderWindow window(
+        sf::VideoMode(800, 600),
+        "Character Selection"
+    );
+    init();
+    while (window.isOpen()) {
+        static sf::Clock clock;
+        const float dt = clock.restart().asSeconds();
+
+        window.clear(sf::Color::Black);
+        update(dt);
+        render(window);
+        sf::sleep(sf::seconds(time_step));
+        window.display();
+    }
 }
