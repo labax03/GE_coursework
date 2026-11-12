@@ -18,11 +18,16 @@ const sf::Keyboard::Key controls[8] = {
 sf::Sprite player;
 
 const float time_step = 0.017f; //60 fps
+const float animationSpeed = 0.12f;
 
 sf::Texture davequaviousTexture;
 sf::Texture orcTexture;
 sf::Texture elfTexture;
 sf::Texture knightTexture;
+
+int currentFrame = 0;
+float animationTimer = 0.f;
+int row = 4; // row 4 contains the idle sprite animations 
 
 /// <summary>/// /// </summary>
 
@@ -72,9 +77,8 @@ void init() {
 }
 
 void update(float dt) {
-    int currentFrame = 0;
-    float animationTimer = 0.f;
-    int row = 4;
+    row = 4; // reset animation to idle whne nothing is pressed
+    
 
     if (sf::Keyboard::isKeyPressed(controls[0])) { // UP
         player.move(0.f, -3.f);
@@ -106,25 +110,17 @@ void update(float dt) {
     if (sf::Keyboard::isKeyPressed(controls[7])) { // knight
         player.setTexture(knightTexture);
     }
+   
+        animationTimer += dt;
 
-    
-    animationTimer += 0.1f;
-    if (sf::Keyboard::isKeyPressed(controls[0]) ||
-        sf::Keyboard::isKeyPressed(controls[1]) ||
-        sf::Keyboard::isKeyPressed(controls[2]) ||
-        sf::Keyboard::isKeyPressed(controls[3])) {
-
-        if (animationTimer >= 1.f){
-                animationTimer = 0.f;
-                currentFrame = (currentFrame + 1) % 8;
-        }
-    }
-    else{
-        if (animationTimer >= 1.f){
+        if (animationTimer >= animationSpeed){
             animationTimer = 0.f;
-            currentFrame = (currentFrame + 1) % 4;
+            currentFrame++;
+            if (currentFrame >= 8 || currentFrame >= 4 && row == 4) {
+                currentFrame = 0;
+            }
         }
-     }
+
 
 
     player.setTextureRect(
