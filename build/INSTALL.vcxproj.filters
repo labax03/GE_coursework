@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="18.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="C:\Users\melis\GE_coursework\build\CMakeFiles\4c775fb26711c994cabfe8b64157feb7\INSTALL_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{12F1018C-E9DC-338A-9AC6-FEE5162F3AF4}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

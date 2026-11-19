@@ -34,28 +34,28 @@ int row = 4; // row 4 contains the idle sprite animations
 void init() {
     // Load Dave spritesheet
     if (!davequaviousTexture.loadFromFile(
-        "Debug/res/davequavious.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
+        "res/davequavious.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
         std::cerr << "Failed to load davequavious.png" << std::endl;
     }
 
     // Load Orc spritesheet
     if (!orcTexture.loadFromFile(
-        "Debug/res/orc.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
+        "res/orc.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
         std::cerr << "Failed to load orc.png" << std::endl;
     }
 
     // Load elf spritesheet
     if (!elfTexture.loadFromFile(
-        "Debug/res/elf.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
+        "res/elf.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
         std::cerr << "Failed to load elf.png" << std::endl;
     }
 
     // Load knight spritesheet
     if (!knightTexture.loadFromFile(
-        "Debug/res/knight.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
+        "res/knight.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
         std::cerr << "Failed to load knight.png" << std::endl;
     }
