@@ -3,6 +3,7 @@
     "expandedProjectPaths": [
         "."
     ],
+    "exportAsImage.includeBackgroundColor": true,
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "C:/Users/User/OneDrive/Desktop/Games Engineering/Coursework/Church.tsx": {
@@ -21,7 +22,8 @@
             "scaleInDock": 0.5
         },
         "C:/Users/User/OneDrive/Desktop/Games Engineering/Coursework/village_buildings.tsx": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "C:/Users/User/OneDrive/Desktop/Games Engineering/Coursework/village_map.tmx": {
             "scale": 0.5,
@@ -32,7 +34,8 @@
             }
         },
         "C:/Users/User/OneDrive/Desktop/Games Engineering/Coursework/village_trees.tsx": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "church.tsx": {
             "scaleInDock": 1,
@@ -56,10 +59,10 @@
         },
         "village_map.tmx": {
             "scale": 0.5,
-            "selectedLayer": 1,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 657,
-                "y": 821
+                "x": 1723,
+                "y": 597
             }
         },
         "village_post.tsx": {
@@ -69,6 +72,9 @@
         "village_terrain.tsx": {
             "scaleInDock": 1,
             "scaleInEditor": 1
+        },
+        "village_trees.tsx": {
+            "scaleInDock": 1
         }
     },
     "last.imagePath": "C:/Users/User/GE_coursework/resources/Village_map",
@@ -83,22 +89,20 @@
         "village_buildings.tsx",
         "church.tsx",
         "village_fences.tsx",
-        "village_decor.tsx",
-        "lantern_post.tsx",
-        "village_post.tsx",
-        "village_post.tsx",
-        "village_post.tsx"
+        "village_decor.tsx"
     ],
     "project": "village_map.tiled-project",
     "recentFiles": [
         "village_terrain.tsx",
-        "village_post.tsx",
-        "lantern_post.tsx",
         "village_decor.tsx",
         "village_fences.tsx",
         "church.tsx",
         "village_buildings.tsx",
         "village_map.tmx",
+        "C:/Users/User/OneDrive/Desktop/Games Engineering/Coursework/village_trees.tsx",
+        "C:/Users/User/OneDrive/Desktop/Games Engineering/Coursework/village_buildings.tsx",
+        "village_post.tsx",
+        "lantern_post.tsx",
         "C:/Users/User/OneDrive/Desktop/Games Engineering/Coursework/village_map.tmx"
     ],
     "tileset.lastUsedFormat": "tsx",

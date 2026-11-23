@@ -1,5 +1,14 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <tmxlite/Map.hpp>
+#include <tmxlite/ObjectGroup.hpp>
+#include <vector>
+
+/*
+fix foreground to line up / find easier way to render map
+add barriers to outline of map
+fix ratio for characters
+*/
 
 const int FRAME_WIDTH = 64;
 const int FRAME_HEIGHT = 64;
@@ -25,9 +34,20 @@ sf::Texture orcTexture;
 sf::Texture elfTexture;
 sf::Texture knightTexture;
 
+// Background
+sf::Texture backgroundTexture;
+sf::Sprite backgroundSprite;
+
+// Foreground
+sf::Texture foregroundTexture;
+sf::Sprite foregroundSprite;
+
 int currentFrame = 0;
 float animationTimer = 0.f;
 int row = 4; // row 4 contains the idle sprite animations 
+
+tmx::Map villageMap;
+std::vector<sf::FloatRect> collisionRects;
 
 /// <summary>/// /// </summary>
 
@@ -60,6 +80,18 @@ void init() {
         std::cerr << "Failed to load knight.png" << std::endl;
     }
 
+    // Background
+    backgroundTexture.loadFromFile("Debug/res/Village_map/village_background.png");
+    foregroundTexture.loadFromFile("Debug/res/Village_map/village_foreground.png");
+
+    // Background sprites
+    backgroundSprite.setTexture(backgroundTexture);
+    foregroundSprite.setTexture(foregroundTexture);
+
+    // Positions
+    backgroundSprite.setPosition(0.f, 0.f);
+    foregroundSprite.setPosition(0.f, 0.f);
+  
     // Optional: smoother scaling
     davequaviousTexture.setSmooth(false);
     orcTexture.setSmooth(false);
@@ -72,11 +104,21 @@ void init() {
         FRAME_WIDTH / 2.0f,
         FRAME_HEIGHT / 2.0f
     );
+}
+sf::FloatRect getPlayerFeetBounds()
+{
+    sf::FloatRect spriteBounds = player.getGlobalBounds();
 
-    player.setPosition(400.f, 300.f);
+    return sf::FloatRect(
+        spriteBounds.left + 16.f,      // move inward
+        spriteBounds.top + 52.f,       // near bottom
+        32.f,                          // width
+        12.f                           // height
+    );
 }
 
 void update(float dt) {
+    sf::Vector2f oldPos = player.getPosition();
     row = 4; // reset animation to idle whne nothing is pressed
     
 
@@ -110,7 +152,15 @@ void update(float dt) {
     if (sf::Keyboard::isKeyPressed(controls[7])) { // knight
         player.setTexture(knightTexture);
     }
-   
+
+    for (const auto& rect : collisionRects)
+    {
+        if (getPlayerFeetBounds().intersects(rect))
+        {
+            player.setPosition(oldPos);
+            break;
+        }
+    }
         animationTimer += dt;
 
         if (animationTimer >= animationSpeed){
@@ -120,8 +170,6 @@ void update(float dt) {
                 currentFrame = 0;
             }
         }
-
-
 
     player.setTextureRect(
         sf::IntRect(
@@ -133,25 +181,122 @@ void update(float dt) {
     );
 }
 
-void render(sf::RenderWindow& window){
+void render(sf::RenderWindow& window)
+{
+    // Background
+    window.draw(backgroundSprite);
+
+    // Player
     window.draw(player);
 
+    
+    // Foreground
+    window.draw(foregroundSprite);
+    /*
+    window.draw(fgTRSprite);
+    window.draw(fgBLSprite);
+    window.draw(fgBRSprite);
+    */
 }
-
-int main() {
+int main()
+{
     sf::RenderWindow window(
         sf::VideoMode(800, 600),
         "Character Selection"
     );
+
+    std::cout << "Maximum texture size: "
+        << sf::Texture::getMaximumSize()
+        << std::endl;
+
+    if (!villageMap.load(
+        "Debug/res/village_map/village_map.tmx"))
+    {
+        std::cout << "Map failed to load" << std::endl;
+        return -1;
+    }
+
     init();
-    while (window.isOpen()) {
+
+    sf::View camera;
+    camera.setSize(800.f, 600.f);
+    camera.setCenter(player.getPosition());
+
+    // move player to PlayerSpawn object
+    for (const auto& layer : villageMap.getLayers())
+    {
+        if (layer->getName() == "spawns")
+        {
+            auto* objectLayer =
+                dynamic_cast<tmx::ObjectGroup*>(layer.get());
+
+            if (!objectLayer)
+                continue;
+
+            for (const auto& object : objectLayer->getObjects())
+            {
+                if (object.getName() == "PlayerSpawn")
+                {
+                    player.setPosition(
+                        object.getPosition().x,
+                        object.getPosition().y
+                    );
+                }
+            }
+        }
+    }
+
+    // load collision rectangles
+    for (const auto& layer : villageMap.getLayers())
+    {
+        if (layer->getName() == "collisions")
+        {
+            auto* objectLayer =
+                dynamic_cast<tmx::ObjectGroup*>(layer.get());
+
+            if (!objectLayer)
+                continue;
+  
+            for (const auto& object : objectLayer->getObjects())
+            {
+                collisionRects.emplace_back(
+                    object.getPosition().x,
+                    object.getPosition().y,
+                    object.getAABB().width,
+                    object.getAABB().height
+                );
+            }
+        }
+    }
+
+    while (window.isOpen())
+    {
+        sf::Event event;
+
+        while (window.pollEvent(event))
+        {
+            if (event.type == sf::Event::Closed)
+            {
+                window.close();
+            }
+        }
+
         static sf::Clock clock;
         const float dt = clock.restart().asSeconds();
 
-        window.clear(sf::Color::Black);
         update(dt);
+
+        camera.setCenter(player.getPosition());
+        window.setView(camera);
+
+        window.clear();
+
         render(window);
-        sf::sleep(sf::seconds(time_step));
+
         window.display();
+
+        sf::sleep(sf::seconds(time_step));
     }
+
+    return 0;
 }
