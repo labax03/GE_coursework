@@ -58,11 +58,11 @@
             "scaleInEditor": 1
         },
         "village_map.tmx": {
-            "scale": 0.5,
-            "selectedLayer": 2,
+            "scale": 0.33,
+            "selectedLayer": 5,
             "viewCenter": {
-                "x": 953,
-                "y": 573
+                "x": 1186.3636363636363,
+                "y": 677.2727272727274
             }
         },
         "village_post.tsx": {
