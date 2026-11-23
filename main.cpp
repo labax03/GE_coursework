@@ -220,7 +220,8 @@ int main()
 
     sf::View camera;
     camera.setSize(800.f, 600.f);
-    camera.setCenter(player.getPosition());
+    // original camera code 
+   // camera.setCenter(player.getPosition());
 
     // move player to PlayerSpawn object
     for (const auto& layer : villageMap.getLayers())
@@ -269,6 +270,33 @@ int main()
         }
     }
 
+    // map collision boundaries
+	float mapWidth = villageMap.getTileCount().x * villageMap.getTileSize().x;
+	float mapHeight = villageMap.getTileCount().y * villageMap.getTileSize().y;
+	float thickness = 100.f; // thickness of the collision boundaries
+
+	// Left boundary
+	collisionRects.emplace_back(-thickness, 0.f, thickness, mapHeight);
+
+	// Right boundary
+	collisionRects.emplace_back(mapWidth, 0.f, thickness, mapHeight);
+
+	// Top boundary
+	collisionRects.emplace_back(0.f, -thickness, mapWidth, thickness);
+
+	// Bottom boundary
+	collisionRects.emplace_back(0.f, mapHeight, mapWidth, thickness);
+
+    // Camera boundaries
+    float halfWidth = camera.getSize().x / 2.f;
+    float halfHeight = camera.getSize().y / 2.f;
+
+    float minX = halfWidth;
+    float maxX = mapWidth - halfWidth;
+
+    float minY = halfHeight;
+    float maxY = mapHeight - halfHeight;
+
     while (window.isOpen())
     {
         sf::Event event;
@@ -285,8 +313,17 @@ int main()
         const float dt = clock.restart().asSeconds();
 
         update(dt);
+        
+		// original code for camera
+        // camera.setCenter(player.getPosition());
 
-        camera.setCenter(player.getPosition());
+		// Get player position for camera
+		sf::Vector2f cameraPosition = player.getPosition();
+
+		cameraPosition.x = std::max(minX, std::min(maxX, cameraPosition.x));
+		cameraPosition.y = std::max(minY, std::min(maxY, cameraPosition.y));
+
+        camera.setCenter(cameraPosition);
         window.setView(camera);
 
         window.clear();
