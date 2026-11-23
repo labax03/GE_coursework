@@ -1,0 +1,78 @@
+{
+    "activeFile": "brandy_house.tmx",
+    "expandedProjectPaths": [
+        "."
+    ],
+    "exportAsImage.includeBackgroundColor": true,
+    "fileStates": {
+        "C:/Users/User/GE_coursework/resources/Village_map/church.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/User/GE_coursework/resources/Village_map/village_buildings.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/User/GE_coursework/resources/Village_map/village_decor.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/User/GE_coursework/resources/Village_map/village_fences.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/User/GE_coursework/resources/Village_map/village_map.tmx": {
+            "scale": 0.11578124999999999,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": -1386.2348178137654,
+                "y": 639.1363022941973
+            }
+        },
+        "C:/Users/User/GE_coursework/resources/Village_map/village_terrain.tsx": {
+            "scaleInDock": 1
+        },
+        "C:/Users/User/GE_coursework/resources/Village_map/village_trees.tsx": {
+            "scaleInDock": 1
+        },
+        "Furniture.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 4
+        },
+        "House.tsx": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 2
+        },
+        "brandy_house.tmx": {
+            "expandedObjectLayers": [
+                2
+            ],
+            "scale": 1.5,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 292.33333333333337,
+                "y": 98.33333333333331
+            }
+        }
+    },
+    "last.exportedFilePath": "C:/Users/User/GE_coursework/resources/Village_map/brandy_house",
+    "last.imagePath": "C:/Users/User/GE_coursework/resources/Village_map/brandy_house",
+    "map.height": 5,
+    "map.lastUsedExportFilter": "Tiled map files (*.tmx *.xml)",
+    "map.tileHeight": 64,
+    "map.tileWidth": 64,
+    "map.width": 9,
+    "openFiles": [
+        "House.tsx",
+        "brandy_house.tmx",
+        "C:/Users/User/GE_coursework/resources/Village_map/village_map.tmx"
+    ],
+    "project": "brandy_house.tiled-project",
+    "recentFiles": [
+        "House.tsx",
+        "C:/Users/User/GE_coursework/resources/Village_map/village_map.tmx",
+        "brandy_house.tmx",
+        "Furniture.tsx"
+    ],
+    "tileset.lastUsedFormat": "tsx",
+    "tileset.tileSize": {
+        "height": 64,
+        "width": 64
+    }
+}

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="9" height="5" tilewidth="64" tileheight="64" infinite="0" nextlayerid="4" nextobjectid="4">
+ <tileset firstgid="1" source="House.tsx"/>
+ <layer id="1" name="Tile Layer 1" width="9" height="5">
+  <data encoding="csv">
+1,1,1,1,1,1,1,1,1,
+2,9,14,2,7,2,14,10,2,
+16,6,6,6,6,6,6,6,12,
+16,6,6,6,6,6,6,6,12,
+16,6,6,6,6,6,6,6,12
+</data>
+ </layer>
+ <objectgroup id="2" name="collisions">
+  <object id="1" x="0.0391787" y="0.220997" width="575.736" height="127.568"/>
+ </objectgroup>
+ <objectgroup id="3" name="spawns">
+  <object id="2" name="brandySpawn" x="480" y="155.333" width="64" height="64"/>
+  <object id="3" name="shlurSpawn" x="390.5" y="155.5" width="64" height="64"/>
+ </objectgroup>
+</map>
