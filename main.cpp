@@ -1,8 +1,15 @@
+
+/*
 #include <SFML/Graphics.hpp>
 #include <iostream>
 #include <tmxlite/Map.hpp>
 #include <tmxlite/ObjectGroup.hpp>
 #include <vector>
+*/
+
+#include "Parameters.h"
+#include "game_system.h"
+
 
 /*
 fix foreground to line up / find easier way to render map
@@ -10,104 +17,69 @@ add barriers to outline of map
 fix ratio for characters
 */
 
-const int FRAME_WIDTH = 64;
-const int FRAME_HEIGHT = 64;
-
-const sf::Keyboard::Key controls[8] = {
-    sf::Keyboard::W,   // Player UP
-    sf::Keyboard::S,   // Player Down
-    sf::Keyboard::A,  // Player Left
-    sf::Keyboard::D, // Player Right
-    sf::Keyboard::Num1,
-    sf::Keyboard::Num2,
-    sf::Keyboard::Num3,
-    sf::Keyboard::Num4
-};
-
-sf::Sprite player;
-
-const float time_step = 0.017f; //60 fps
-const float animationSpeed = 0.12f;
-
-sf::Texture davequaviousTexture;
-sf::Texture orcTexture;
-sf::Texture elfTexture;
-sf::Texture knightTexture;
-
-// Background
-sf::Texture backgroundTexture;
-sf::Sprite backgroundSprite;
-
-// Foreground
-sf::Texture foregroundTexture;
-sf::Sprite foregroundSprite;
-
-int currentFrame = 0;
-float animationTimer = 0.f;
-int row = 4; // row 4 contains the idle sprite animations 
-
-tmx::Map villageMap;
-std::vector<sf::FloatRect> collisionRects;
 
 /// <summary>/// /// </summary>
-
+/*
 void init() {
     // Load Dave spritesheet
-    if (!davequaviousTexture.loadFromFile(
+    if (!Parameters::davequaviousTexture.loadFromFile(
         "Debug/res/davequavious.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
         std::cerr << "Failed to load davequavious.png" << std::endl;
     }
 
     // Load Orc spritesheet
-    if (!orcTexture.loadFromFile(
+    if (!Parameters::orcTexture.loadFromFile(
         "Debug/res/orc.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
         std::cerr << "Failed to load orc.png" << std::endl;
     }
 
     // Load elf spritesheet
-    if (!elfTexture.loadFromFile(
+    if (!Parameters::elfTexture.loadFromFile(
         "Debug/res/elf.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
         std::cerr << "Failed to load elf.png" << std::endl;
     }
 
     // Load knight spritesheet
-    if (!knightTexture.loadFromFile(
+    if (!Parameters::knightTexture.loadFromFile(
         "Debug/res/knight.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
         std::cerr << "Failed to load knight.png" << std::endl;
     }
 
     // Background
-    backgroundTexture.loadFromFile("Debug/res/Village_map/village_background.png");
-    foregroundTexture.loadFromFile("Debug/res/Village_map/village_foreground.png");
+    Parameters::backgroundTexture.loadFromFile("Debug/res/Village_map/village_background.png");
+    Parameters::foregroundTexture.loadFromFile("Debug/res/Village_map/village_foreground.png");
 
     // Background sprites
-    backgroundSprite.setTexture(backgroundTexture);
-    foregroundSprite.setTexture(foregroundTexture);
+    Parameters::backgroundSprite.setTexture(Parameters::backgroundTexture);
+    Parameters::foregroundSprite.setTexture(Parameters::foregroundTexture);
 
     // Positions
-    backgroundSprite.setPosition(0.f, 0.f);
-    foregroundSprite.setPosition(0.f, 0.f);
+    Parameters::backgroundSprite.setPosition(0.f, 0.f);
+    Parameters::foregroundSprite.setPosition(0.f, 0.f);
   
     // Optional: smoother scaling
-    davequaviousTexture.setSmooth(false);
-    orcTexture.setSmooth(false);
+    Parameters::davequaviousTexture.setSmooth(false);
+    Parameters::orcTexture.setSmooth(false);
 
     // Create player sprite
-    player.setTexture(davequaviousTexture);
+    Parameters::player.setTexture(Parameters::davequaviousTexture);
+
+    Parameters::elf.setTexture(Parameters::elfTexture);
+    Parameters::knight.setTexture(Parameters::knightTexture);
+    Parameters::orc.setTexture(Parameters::orcTexture);
 
     // Centre origin so scaling looks better
-    player.setOrigin(
-        FRAME_WIDTH / 2.0f,
-        FRAME_HEIGHT / 2.0f
+    Parameters::player.setOrigin(
+        Parameters::FRAME_WIDTH / 2.0f,
+        Parameters::FRAME_HEIGHT / 2.0f
     );
 }
-sf::FloatRect getPlayerFeetBounds()
-{
-    sf::FloatRect spriteBounds = player.getGlobalBounds();
+sf::FloatRect getPlayerFeetBounds() {
+    sf::FloatRect spriteBounds = Parameters::player.getGlobalBounds();
 
     return sf::FloatRect(
         spriteBounds.left + 16.f,      // move inward
@@ -118,65 +90,65 @@ sf::FloatRect getPlayerFeetBounds()
 }
 
 void update(float dt) {
-    sf::Vector2f oldPos = player.getPosition();
-    row = 4; // reset animation to idle whne nothing is pressed
-    
+    sf::Vector2f oldPos = Parameters::player.getPosition();
+    int row = 4; // row 4 contains the idle sprite animations // reset animation to idle whne nothing is pressed
 
-    if (sf::Keyboard::isKeyPressed(controls[0])) { // UP
-        player.move(0.f, -3.f);
+
+    if (sf::Keyboard::isKeyPressed(Parameters::controls[0])) { // UP
+        Parameters::player.move(0.f, -3.f);
         row = 3;
         }
-    if (sf::Keyboard::isKeyPressed(controls[1])) { // DOWN
-            player.move(0.f, 3.f);
+    if (sf::Keyboard::isKeyPressed(Parameters::controls[1])) { // DOWN
+        Parameters::player.move(0.f, 3.f);
             row = 2;
         }
 
-    if (sf::Keyboard::isKeyPressed(controls[2])) { // LEFT
-            player.move(-3.f, 0.f);
+    if (sf::Keyboard::isKeyPressed(Parameters::controls[2])) { // LEFT
+            Parameters::player.move(-3.f, 0.f);
             row = 0;
         }
 
-    if (sf::Keyboard::isKeyPressed(controls[3])) { // RIGHT
-            player.move(3.f, 0.f);
+    if (sf::Keyboard::isKeyPressed(Parameters::controls[3])) { // RIGHT
+            Parameters::player.move(3.f, 0.f);
             row = 1;
         }
-    if (sf::Keyboard::isKeyPressed(controls[4])) { // Dave
-        player.setTexture(davequaviousTexture);
+    if (sf::Keyboard::isKeyPressed(Parameters::controls[4])) { // Dave
+        Parameters::player.setTexture(Parameters::davequaviousTexture);
     }
-    if (sf::Keyboard::isKeyPressed(controls[5])) { // orc
-        player.setTexture(orcTexture);
+    if (sf::Keyboard::isKeyPressed(Parameters::controls[5])) { // orc
+        Parameters::player.setTexture(Parameters::orcTexture);
     }
-    if (sf::Keyboard::isKeyPressed(controls[6])) { // elf
-        player.setTexture(elfTexture);
+    if (sf::Keyboard::isKeyPressed(Parameters::controls[6])) { // elf
+        Parameters::player.setTexture(Parameters::elfTexture);
     }
-    if (sf::Keyboard::isKeyPressed(controls[7])) { // knight
-        player.setTexture(knightTexture);
+    if (sf::Keyboard::isKeyPressed(Parameters::controls[7])) { // knight
+        Parameters::player.setTexture(Parameters::knightTexture);
     }
 
-    for (const auto& rect : collisionRects)
+    for (const auto& rect : Parameters::collisionRects)
     {
         if (getPlayerFeetBounds().intersects(rect))
         {
-            player.setPosition(oldPos);
+            Parameters::player.setPosition(oldPos);
             break;
         }
     }
-        animationTimer += dt;
+        Parameters::animationTimer += dt;
 
-        if (animationTimer >= animationSpeed){
-            animationTimer = 0.f;
-            currentFrame++;
-            if (currentFrame >= 8 || currentFrame >= 4 && row == 4) {
-                currentFrame = 0;
+        if (Parameters::animationTimer >= Parameters::animationSpeed){
+            Parameters::animationTimer = 0.f;
+            Parameters::currentFrame++;
+            if (Parameters::currentFrame >= 8 || Parameters::currentFrame >= 4 && row == 4) {
+                Parameters::currentFrame = 0;
             }
         }
 
-    player.setTextureRect(
+        Parameters::player.setTextureRect(
         sf::IntRect(
-            currentFrame * FRAME_WIDTH,
-            row * FRAME_HEIGHT,
-            FRAME_WIDTH,
-            FRAME_HEIGHT
+            Parameters::currentFrame * Parameters::FRAME_WIDTH,
+            row * Parameters::FRAME_HEIGHT,
+            Parameters::FRAME_WIDTH,
+            Parameters::FRAME_HEIGHT
         )
     );
 }
@@ -184,22 +156,30 @@ void update(float dt) {
 void render(sf::RenderWindow& window)
 {
     // Background
-    window.draw(backgroundSprite);
+    window.draw(Parameters::backgroundSprite);
 
     // Player
-    window.draw(player);
+    window.draw(Parameters::player);
+    window.draw(Parameters::elf);
+    window.draw(Parameters::orc);
+    window.draw(Parameters::knight);
 
     
     // Foreground
-    window.draw(foregroundSprite);
+    window.draw(Parameters::foregroundSprite);
     /*
     window.draw(fgTRSprite);
     window.draw(fgBLSprite);
     window.draw(fgBRSprite);
     */
+/*
 }
 int main()
 {
+    float animationTimer = 0.f;
+    int row = 4; // row 4 contains the idle sprite animations 
+    Parameters::currentFrame = 0;
+
     sf::RenderWindow window(
         sf::VideoMode(800, 600),
         "Character Selection"
@@ -209,7 +189,7 @@ int main()
         << sf::Texture::getMaximumSize()
         << std::endl;
 
-    if (!villageMap.load(
+    if (!Parameters::villageMap.load(
         "Debug/res/village_map/village_map.tmx"))
     {
         std::cout << "Map failed to load" << std::endl;
@@ -220,10 +200,10 @@ int main()
 
     sf::View camera;
     camera.setSize(800.f, 600.f);
-    camera.setCenter(player.getPosition());
+    camera.setCenter(Parameters::player.getPosition());
 
     // move player to PlayerSpawn object
-    for (const auto& layer : villageMap.getLayers())
+    for (const auto& layer : Parameters::villageMap.getLayers())
     {
         if (layer->getName() == "spawns")
         {
@@ -237,17 +217,39 @@ int main()
             {
                 if (object.getName() == "PlayerSpawn")
                 {
-                    player.setPosition(
+                    Parameters::player.setPosition(
                         object.getPosition().x,
                         object.getPosition().y
                     );
                 }
+                if (object.getName() == "KnightSpawn")
+                {
+                    Parameters::knight.setPosition(
+                        object.getPosition().x,
+                        object.getPosition().y
+                    );
+                }
+                if (object.getName() == "FairySpawn")
+                {
+                    Parameters::elf.setPosition(
+                        object.getPosition().x,
+                        object.getPosition().y
+                    );
+                }
+                if (object.getName() == "OrcSpawn")
+                {
+                    Parameters::orc.setPosition(
+                        object.getPosition().x,
+                        object.getPosition().y
+                    );
+                }
+                
             }
         }
     }
 
     // load collision rectangles
-    for (const auto& layer : villageMap.getLayers())
+    for (const auto& layer : Parameters::villageMap.getLayers())
     {
         if (layer->getName() == "collisions")
         {
@@ -259,7 +261,7 @@ int main()
   
             for (const auto& object : objectLayer->getObjects())
             {
-                collisionRects.emplace_back(
+                Parameters::collisionRects.emplace_back(
                     object.getPosition().x,
                     object.getPosition().y,
                     object.getAABB().width,
@@ -286,7 +288,7 @@ int main()
 
         update(dt);
 
-        camera.setCenter(player.getPosition());
+        camera.setCenter(Parameters::player.getPosition());
         window.setView(camera);
 
         window.clear();
@@ -295,8 +297,9 @@ int main()
 
         window.display();
 
-        sf::sleep(sf::seconds(time_step));
+        sf::sleep(sf::seconds(Parameters::time_step));
     }
 
     return 0;
 }
+*/

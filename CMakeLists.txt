@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.11)
-project(setup)
+project(GE_coursework)
 
 # Require modern C++
 set(CMAKE_CXX_STANDARD 14)
@@ -27,7 +27,8 @@ add_custom_target(copy_resources ALL
 # Main executable
 add_executable(GE_coursework
     main.cpp
-)
+    game_system.cpp
+     "parameters.cpp")
 
 target_include_directories(GE_coursework PRIVATE
     ${SFML_INCS}
