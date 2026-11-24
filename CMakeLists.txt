@@ -28,7 +28,7 @@ add_custom_target(copy_resources ALL
 add_executable(GE_coursework
     main.cpp
     game_system.cpp
-     "parameters.cpp")
+     "Parameters.cpp" "NPC.cpp")
 
 target_include_directories(GE_coursework PRIVATE
     ${SFML_INCS}
