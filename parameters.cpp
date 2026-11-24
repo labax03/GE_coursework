@@ -6,9 +6,9 @@
 
     sf::Sprite Parameters::player;
 
-    sf::Sprite Parameters::elf; // sprites will be held a class variable when we switch to object oriented 
-    sf::Sprite Parameters::orc; // 
-    sf::Sprite Parameters::knight; // 
+    NPC Parameters::elf("elf.png"); 
+    NPC Parameters::knight("knight.png");
+    NPC Parameters::orc("orc.png");
 
     sf::Texture Parameters::davequaviousTexture;
     sf::Texture Parameters::orcTexture;

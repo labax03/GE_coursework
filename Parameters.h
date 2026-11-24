@@ -2,6 +2,7 @@
 #include <SFML/Graphics.hpp>
 #include <tmxlite/Map.hpp>
 #include <tmxlite/ObjectGroup.hpp>
+#include "NPC.h"
 
 struct Parameters {
 	static constexpr int FRAME_WIDTH = 64;
@@ -20,9 +21,9 @@ struct Parameters {
 
     static sf::Sprite player;
 
-    static sf::Sprite elf; // sprites will be held a class variable when we switch to object oriented 
-    static sf::Sprite orc; // 
-    static sf::Sprite knight; // 
+    static NPC elf; // sprites will be held a class variable when we switch to object oriented 
+    static NPC orc; // 
+    static NPC knight; // 
 
     static constexpr float time_step = 0.017f; //60 fps
     static constexpr float animationSpeed = 0.12f;

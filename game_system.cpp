@@ -5,6 +5,7 @@
 #include <vector>
 #include "Parameters.h"
 #include "game_system.h"
+#include "NPC.h"
 
 /*
 fix foreground to line up / find easier way to render map
@@ -15,32 +16,11 @@ fix ratio for characters
 /// <summary>/// /// </summary>
 
 void GameSystems::init() {
-    // Load Dave spritesheet
+
     if (!Parameters::davequaviousTexture.loadFromFile(
         "Debug/res/davequavious.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
     {
         std::cerr << "Failed to load davequavious.png" << std::endl;
-    }
-
-    // Load Orc spritesheet
-    if (!Parameters::orcTexture.loadFromFile(
-        "Debug/res/orc.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
-    {
-        std::cerr << "Failed to load orc.png" << std::endl;
-    }
-
-    // Load elf spritesheet
-    if (!Parameters::elfTexture.loadFromFile(
-        "Debug/res/elf.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
-    {
-        std::cerr << "Failed to load elf.png" << std::endl;
-    }
-
-    // Load knight spritesheet
-    if (!Parameters::knightTexture.loadFromFile(
-        "Debug/res/knight.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
-    {
-        std::cerr << "Failed to load knight.png" << std::endl;
     }
 
     // Background
@@ -62,9 +42,6 @@ void GameSystems::init() {
     // Create player sprite
     Parameters::player.setTexture(Parameters::davequaviousTexture);
 
-    Parameters::elf.setTexture(Parameters::elfTexture);
-    Parameters::knight.setTexture(Parameters::knightTexture);
-    Parameters::orc.setTexture(Parameters::orcTexture);
 
     // Centre origin so scaling looks better
     Parameters::player.setOrigin(
@@ -84,6 +61,10 @@ sf::FloatRect GameSystems::getPlayerFeetBounds() {
 }
 
 int GameSystems::update(float dt,int currentFrame) {
+    Parameters::elf.update(dt);
+    Parameters::orc.update(dt);
+    Parameters::knight.update(dt);
+
     sf::Vector2f oldPos = Parameters::player.getPosition();
     int row = 4; // row 4 contains the idle sprite animations // reset animation to idle whne nothing is pressed
     static float animationTimer = 0.f;
