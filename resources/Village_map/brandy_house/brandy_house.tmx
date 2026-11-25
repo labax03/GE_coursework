@@ -14,7 +14,7 @@
   <object id="1" x="0.0391787" y="0.220997" width="575.736" height="127.568"/>
  </objectgroup>
  <objectgroup id="3" name="spawns">
-  <object id="2" name="brandySpawn" x="480" y="155.333" width="64" height="64"/>
-  <object id="3" name="shlurSpawn" x="390.5" y="155.5" width="64" height="64"/>
+  <object id="2" name="brandySpawn" x="469" y="145" width="64" height="64"/>
+  <object id="3" name="shlurSpawn" x="390.167" y="144.5" width="64" height="64"/>
  </objectgroup>
 </map>

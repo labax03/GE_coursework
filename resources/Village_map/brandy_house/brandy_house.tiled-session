@@ -1,9 +1,10 @@
 {
-    "activeFile": "brandy_house.tmx",
+    "activeFile": "C:/Users/User/GE_coursework/resources/forest_map/forest_map.tmx",
     "expandedProjectPaths": [
         "."
     ],
     "exportAsImage.includeBackgroundColor": true,
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "C:/Users/User/GE_coursework/resources/Village_map/church.tsx": {
             "scaleInDock": 1
@@ -18,11 +19,11 @@
             "scaleInDock": 1
         },
         "C:/Users/User/GE_coursework/resources/Village_map/village_map.tmx": {
-            "scale": 0.11578124999999999,
+            "scale": 0.33,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": -1386.2348178137654,
-                "y": 639.1363022941973
+                "x": 795.4545454545453,
+                "y": 659.0909090909091
             }
         },
         "C:/Users/User/GE_coursework/resources/Village_map/village_terrain.tsx": {
@@ -30,6 +31,38 @@
         },
         "C:/Users/User/GE_coursework/resources/Village_map/village_trees.tsx": {
             "scaleInDock": 1
+        },
+        "C:/Users/User/GE_coursework/resources/forest_map/cabin.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 5.5
+        },
+        "C:/Users/User/GE_coursework/resources/forest_map/chest.tsx": {
+            "scaleInDock": 0.75,
+            "scaleInEditor": 1
+        },
+        "C:/Users/User/GE_coursework/resources/forest_map/forest_decor.tsx": {
+            "scaleInDock": 4,
+            "scaleInEditor": 5.5
+        },
+        "C:/Users/User/GE_coursework/resources/forest_map/forest_map.tmx": {
+            "scale": 0.5,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 1083,
+                "y": 365
+            }
+        },
+        "C:/Users/User/GE_coursework/resources/forest_map/forest_terrain.tsx": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 1
+        },
+        "C:/Users/User/GE_coursework/resources/forest_map/forest_trees.tsx": {
+            "scaleInDock": 1.5,
+            "scaleInEditor": 3
+        },
+        "C:/Users/User/GE_coursework/resources/forest_map/tree.tsx": {
+            "scaleInDock": 2,
+            "scaleInEditor": 5.5
         },
         "Furniture.tsx": {
             "scaleInDock": 2,
@@ -43,36 +76,46 @@
             "expandedObjectLayers": [
                 2
             ],
-            "scale": 1.5,
+            "scale": 3,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 292.33333333333337,
-                "y": 98.33333333333331
+                "x": 372.5,
+                "y": 170.83333333333331
             }
         }
     },
     "last.exportedFilePath": "C:/Users/User/GE_coursework/resources/Village_map/brandy_house",
-    "last.imagePath": "C:/Users/User/GE_coursework/resources/Village_map/brandy_house",
-    "map.height": 5,
+    "last.imagePath": "C:/Users/User/GE_coursework/resources/forest_map",
+    "map.height": 40,
     "map.lastUsedExportFilter": "Tiled map files (*.tmx *.xml)",
-    "map.tileHeight": 64,
-    "map.tileWidth": 64,
-    "map.width": 9,
+    "map.lastUsedFormat": "tmx",
+    "map.tileHeight": 32,
+    "map.tileWidth": 32,
+    "map.width": 60,
     "openFiles": [
-        "House.tsx",
-        "brandy_house.tmx",
-        "C:/Users/User/GE_coursework/resources/Village_map/village_map.tmx"
+        "C:/Users/User/GE_coursework/resources/forest_map/forest_map.tmx",
+        "C:/Users/User/GE_coursework/resources/forest_map/forest_terrain.tsx",
+        "C:/Users/User/GE_coursework/resources/forest_map/tree.tsx",
+        "C:/Users/User/GE_coursework/resources/forest_map/forest_decor.tsx",
+        "C:/Users/User/GE_coursework/resources/forest_map/cabin.tsx"
     ],
     "project": "brandy_house.tiled-project",
     "recentFiles": [
-        "House.tsx",
+        "C:/Users/User/GE_coursework/resources/forest_map/cabin.tsx",
+        "C:/Users/User/GE_coursework/resources/forest_map/forest_decor.tsx",
+        "C:/Users/User/GE_coursework/resources/forest_map/tree.tsx",
+        "C:/Users/User/GE_coursework/resources/forest_map/forest_terrain.tsx",
+        "C:/Users/User/GE_coursework/resources/forest_map/forest_map.tmx",
+        "C:/Users/User/GE_coursework/resources/forest_map/chest.tsx",
+        "C:/Users/User/GE_coursework/resources/forest_map/forest_trees.tsx",
         "C:/Users/User/GE_coursework/resources/Village_map/village_map.tmx",
         "brandy_house.tmx",
+        "House.tsx",
         "Furniture.tsx"
     ],
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
-        "height": 64,
-        "width": 64
+        "height": 32,
+        "width": 32
     }
 }
