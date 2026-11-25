@@ -18,7 +18,7 @@ NPC::NPC(std::string filepath) : Sprite() {
 	setTextureRect(_sprite);
 };
 
-int NPC::update(const float& dt) {
+void NPC::update(const float& dt) {
     animationTimer += dt;
     if (animationTimer >= Parameters::animationSpeed) {
         animationTimer -= Parameters::animationSpeed;
@@ -36,7 +36,6 @@ int NPC::update(const float& dt) {
             Parameters::FRAME_HEIGHT
         )
     );
-    return currentFrame;
 }
 
 NPC::~NPC() = default;

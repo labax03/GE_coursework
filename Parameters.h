@@ -3,6 +3,7 @@
 #include <tmxlite/Map.hpp>
 #include <tmxlite/ObjectGroup.hpp>
 #include "NPC.h"
+#include "player.h"
 
 struct Parameters {
 	static constexpr int FRAME_WIDTH = 64;
@@ -19,7 +20,7 @@ struct Parameters {
         sf::Keyboard::Num4
     };
 
-    static sf::Sprite player;
+    static Player player;
 
     static NPC elf; // sprites will be held a class variable when we switch to object oriented 
     static NPC orc; // 
@@ -27,6 +28,7 @@ struct Parameters {
 
     static constexpr float time_step = 0.017f; //60 fps
     static constexpr float animationSpeed = 0.12f;
+    static int currentFrame;
 
     static sf::Texture davequaviousTexture;
     static sf::Texture orcTexture;

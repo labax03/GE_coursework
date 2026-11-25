@@ -4,11 +4,13 @@
 #include <tmxlite/ObjectGroup.hpp>
 #include "parameters.h"
 
-    sf::Sprite Parameters::player;
+    Player Parameters::player("davequavious.png");
+    //sf::Sprite Parameters::player;
 
     NPC Parameters::elf("elf.png"); 
     NPC Parameters::knight("knight.png");
     NPC Parameters::orc("orc.png");
+    int Parameters::currentFrame = 0;
 
     sf::Texture Parameters::davequaviousTexture;
     sf::Texture Parameters::orcTexture;
@@ -22,7 +24,6 @@
     // Foreground
     sf::Texture Parameters::foregroundTexture;
     sf::Sprite Parameters::foregroundSprite;
-
 
 
     tmx::Map Parameters::villageMap;

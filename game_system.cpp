@@ -17,12 +17,6 @@ fix ratio for characters
 
 void GameSystems::init() {
 
-    if (!Parameters::davequaviousTexture.loadFromFile(
-        "Debug/res/davequavious.png")) // THE PROJECT SHOULD NOT BE SUBMITTED IN DEBUG, ALL FILEPATHS MUST BE CHANGED BEFORE SUBMISSION 
-    {
-        std::cerr << "Failed to load davequavious.png" << std::endl;
-    }
-
     // Background
     Parameters::backgroundTexture.loadFromFile("Debug/res/Village_map/village_background.png");
     Parameters::foregroundTexture.loadFromFile("Debug/res/Village_map/village_foreground.png");
@@ -40,7 +34,7 @@ void GameSystems::init() {
     Parameters::orcTexture.setSmooth(false);
 
     // Create player sprite
-    Parameters::player.setTexture(Parameters::davequaviousTexture);
+    //Parameters::player.setTexture(Parameters::davequaviousTexture);
 
 
     // Centre origin so scaling looks better
@@ -49,85 +43,18 @@ void GameSystems::init() {
         Parameters::FRAME_HEIGHT / 2.0f
     );
 }
-sf::FloatRect GameSystems::getPlayerFeetBounds() {
-    sf::FloatRect spriteBounds = Parameters::player.getGlobalBounds();
 
-    return sf::FloatRect(
-        spriteBounds.left + 16.f,      // move inward
-        spriteBounds.top + 52.f,       // near bottom
-        32.f,                          // width
-        12.f                           // height
-    );
-}
 
-int GameSystems::update(float dt,int currentFrame) {
+void GameSystems::update(float dt) {
+    Parameters::player.update(dt);
     Parameters::elf.update(dt);
     Parameters::orc.update(dt);
     Parameters::knight.update(dt);
 
-    sf::Vector2f oldPos = Parameters::player.getPosition();
     int row = 4; // row 4 contains the idle sprite animations // reset animation to idle whne nothing is pressed
     static float animationTimer = 0.f;
 
 
-    if (sf::Keyboard::isKeyPressed(Parameters::controls[0])) { // UP
-        Parameters::player.move(0.f, -3.f);
-        row = 3;
-    }
-    if (sf::Keyboard::isKeyPressed(Parameters::controls[1])) { // DOWN
-        Parameters::player.move(0.f, 3.f);
-        row = 2;
-    }
-
-    if (sf::Keyboard::isKeyPressed(Parameters::controls[2])) { // LEFT
-        Parameters::player.move(-3.f, 0.f);
-        row = 0;
-    }
-
-    if (sf::Keyboard::isKeyPressed(Parameters::controls[3])) { // RIGHT
-        Parameters::player.move(3.f, 0.f);
-        row = 1;
-    }
-    if (sf::Keyboard::isKeyPressed(Parameters::controls[4])) { // Dave
-        Parameters::player.setTexture(Parameters::davequaviousTexture);
-    }
-    if (sf::Keyboard::isKeyPressed(Parameters::controls[5])) { // orc
-        Parameters::player.setTexture(Parameters::orcTexture);
-    }
-    if (sf::Keyboard::isKeyPressed(Parameters::controls[6])) { // elf
-        Parameters::player.setTexture(Parameters::elfTexture);
-    }
-    if (sf::Keyboard::isKeyPressed(Parameters::controls[7])) { // knight
-        Parameters::player.setTexture(Parameters::knightTexture);
-    }
-
-    for (const auto& rect : Parameters::collisionRects)
-    {
-        if (getPlayerFeetBounds().intersects(rect))
-        {
-            Parameters::player.setPosition(oldPos);
-            break;
-        }
-    }
-    animationTimer += dt;
-
-    if (animationTimer >= Parameters::animationSpeed) {
-        animationTimer -= Parameters::animationSpeed;
-        currentFrame++;
-        if (currentFrame >= 8 || currentFrame >= 4 && row == 4) {
-            currentFrame = 0;
-        }
-    }
-
-    Parameters::player.setTextureRect(
-        sf::IntRect(
-            currentFrame * Parameters::FRAME_WIDTH,
-            row * Parameters::FRAME_HEIGHT,
-            Parameters::FRAME_WIDTH,
-            Parameters::FRAME_HEIGHT
-        )
-    );
-    return currentFrame;
 }
 
 void GameSystems::render(sf::RenderWindow& window)
@@ -153,11 +80,10 @@ void GameSystems::render(sf::RenderWindow& window)
 int main()
 {
     int row = 4; // row 4 contains the idle sprite animations 
-    int currentFrame = 0;
 
     sf::RenderWindow window(
         sf::VideoMode(800, 600),
-        "Character Selection"
+        "ScorchQuest"
     );
 
     std::cout << "Maximum texture size: "
@@ -261,7 +187,7 @@ int main()
         static sf::Clock clock;
         const float dt = clock.restart().asSeconds();
 
-        currentFrame = GameSystems::update(dt,currentFrame);
+        GameSystems::update(dt);
 
         camera.setCenter(Parameters::player.getPosition());
         window.setView(camera);
