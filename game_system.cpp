@@ -7,12 +7,6 @@
 #include "game_system.h"
 #include "NPC.h"
 
-/*
-fix foreground to line up / find easier way to render map
-add barriers to outline of map
-fix ratio for characters
-*/
-
 /// <summary>/// /// </summary>
 
 void GameSystems::init() {
@@ -43,7 +37,6 @@ void GameSystems::init() {
         Parameters::FRAME_HEIGHT / 2.0f
     );
 }
-
 
 void GameSystems::update(float dt) {
 
@@ -140,7 +133,6 @@ int main()
                         object.getPosition().y
                     );
                 }
-
             }
         }
     }
@@ -163,10 +155,40 @@ int main()
                     object.getPosition().y,
                     object.getAABB().width,
                     object.getAABB().height
+
                 );
             }
         }
     }
+    // map collision boundaries
+    float mapWidth = Parameters::villageMap.getTileCount().x * Parameters::villageMap.getTileSize().x;
+    float mapHeight = Parameters::villageMap.getTileCount().y * Parameters::villageMap.getTileSize().y;
+    float thickness = 100.f; // thickness of the collision boundaries
+
+    // Left boundary
+    Parameters::collisionRects.emplace_back(-thickness, 0.f, thickness, mapHeight);
+
+    // Right boundary
+    Parameters::collisionRects.emplace_back(mapWidth, 0.f, thickness, mapHeight);
+
+    // Top boundary
+    Parameters::collisionRects.emplace_back(0.f, -thickness, mapWidth, thickness);
+
+    // Bottom boundary
+    Parameters::collisionRects.emplace_back(0.f, mapHeight, mapWidth, thickness);
+
+    // Camera boundaries
+    float halfWidth = camera.getSize().x / 2.f;
+    float halfHeight = camera.getSize().y / 2.f;
+
+    float minX = halfWidth;
+    float maxX = mapWidth - halfWidth;
+
+    float minY = halfHeight;
+    float maxY = mapHeight - halfHeight;
+
+
+
 
     while (window.isOpen())
     {
@@ -185,7 +207,19 @@ int main()
 
         GameSystems::update(dt);
 
-        camera.setCenter(Parameters::player.getPosition());
+        sf::Vector2f cameraPosition =
+            Parameters::player.getPosition();
+
+        cameraPosition.x =
+            std::max(minX,
+                std::min(maxX, cameraPosition.x));
+
+        cameraPosition.y =
+            std::max(minY,
+                std::min(maxY, cameraPosition.y));
+
+        camera.setCenter(cameraPosition);
+
         window.setView(camera);
 
         window.clear();
