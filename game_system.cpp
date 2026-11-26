@@ -46,15 +46,11 @@ void GameSystems::init() {
 
 
 void GameSystems::update(float dt) {
+
     Parameters::player.update(dt);
     Parameters::elf.update(dt);
     Parameters::orc.update(dt);
     Parameters::knight.update(dt);
-
-    int row = 4; // row 4 contains the idle sprite animations // reset animation to idle whne nothing is pressed
-    static float animationTimer = 0.f;
-
-
 }
 
 void GameSystems::render(sf::RenderWindow& window)
