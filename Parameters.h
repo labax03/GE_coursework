@@ -6,6 +6,15 @@
 #include "player.h"
 
 struct Parameters {
+
+    enum class MapType
+    {
+        Village,
+        Forest
+    };
+
+    static MapType currentMap;
+
 	static constexpr int FRAME_WIDTH = 64;
     static constexpr int FRAME_HEIGHT = 64;
 
@@ -45,4 +54,8 @@ struct Parameters {
 
     static tmx::Map villageMap;
     static std::vector<sf::FloatRect> collisionRects;
+    static std::vector<sf::FloatRect> boundaryRects;
+
+    static sf::FloatRect toForestRect;
+    static sf::FloatRect toVillageRect;
 };

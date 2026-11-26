@@ -63,6 +63,16 @@ void Player::update(const float& dt) {
             break;
         }
     }
+
+    for (const auto& rect : Parameters::boundaryRects)
+    {
+        if (Player::getPlayerFeetBounds().intersects(rect))
+        {
+            Parameters::player.setPosition(oldPos);
+            return;
+        }
+    }
+
     animationTimer += dt;
 
     if (animationTimer >= Parameters::animationSpeed) {

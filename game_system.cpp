@@ -60,11 +60,164 @@ void GameSystems::render(sf::RenderWindow& window)
 
     // Foreground
     window.draw(Parameters::foregroundSprite);
-    /*
-    window.draw(fgTRSprite);
-    window.draw(fgBLSprite);
-    window.draw(fgBRSprite);
-    */
+
+}
+
+void loadForestMap()
+{
+    Parameters::collisionRects.clear();
+
+    Parameters::villageMap.load(
+        "Debug/res/forest_map/forest_map.tmx");
+
+    Parameters::backgroundTexture.loadFromFile(
+        "Debug/res/forest_map/forest_background.png");
+    
+    Parameters::foregroundTexture.loadFromFile(
+        "Debug/res/forest_map/forest_foreground.png");
+
+    Parameters::backgroundSprite.setTexture(
+        Parameters::backgroundTexture);
+
+    Parameters::foregroundSprite.setTexture(
+        Parameters::foregroundTexture);
+
+    Parameters::currentMap =
+        Parameters::MapType::Forest;
+
+    // load spawns
+    for (const auto& layer : Parameters::villageMap.getLayers())
+    {
+        if (layer->getName() == "spawns")
+        {
+            auto* objectLayer =
+                dynamic_cast<tmx::ObjectGroup*>(layer.get());
+
+            if (!objectLayer)
+                continue;
+
+            for (const auto& object : objectLayer->getObjects())
+            {
+                if (object.getName() == "forestSpawn")
+                {
+                    Parameters::player.setPosition(
+                        object.getPosition().x,
+                        object.getPosition().y
+                    );
+                }
+
+                if (object.getName() == "toVillage")
+                {
+                    Parameters::toVillageRect =
+                    {
+                        object.getPosition().x,
+                        object.getPosition().y,
+                        object.getAABB().width,
+                        object.getAABB().height
+                    };
+                }
+            }
+        }
+    }
+    for (const auto& layer : Parameters::villageMap.getLayers())
+    {
+        if (layer->getName() == "collisions")
+        {
+            auto* objectLayer =
+                dynamic_cast<tmx::ObjectGroup*>(layer.get());
+
+            if (!objectLayer)
+                continue;
+
+            for (const auto& object : objectLayer->getObjects())
+            {
+                Parameters::collisionRects.emplace_back(
+                    object.getPosition().x,
+                    object.getPosition().y,
+                    object.getAABB().width,
+                    object.getAABB().height
+                );
+            }
+        }
+    }
+}
+
+void loadVillageMap()
+{
+    Parameters::collisionRects.clear();
+
+    Parameters::villageMap.load(
+        "Debug/res/village_map/village_map.tmx");
+
+    Parameters::backgroundTexture.loadFromFile(
+        "Debug/res/village_map/village_background.png");
+
+    Parameters::foregroundTexture.loadFromFile(
+        "Debug/res/village_map/village_foreground.png");
+
+    Parameters::backgroundSprite.setTexture(
+        Parameters::backgroundTexture);
+
+    Parameters::foregroundSprite.setTexture(
+        Parameters::foregroundTexture);
+
+    Parameters::currentMap =
+        Parameters::MapType::Village;
+
+    for (const auto& layer : Parameters::villageMap.getLayers())
+    {
+        if (layer->getName() == "spawns")
+        {
+            auto* objectLayer =
+                dynamic_cast<tmx::ObjectGroup*>(layer.get());
+
+            if (!objectLayer)
+                continue;
+
+            for (const auto& object : objectLayer->getObjects())
+            {
+                if (object.getName() == "PlayerSpawn")
+                {
+                    Parameters::player.setPosition(
+                        object.getPosition().x,
+                        object.getPosition().y
+                    );
+                }
+
+                if (object.getName() == "toForest")
+                {
+                    Parameters::toForestRect =
+                    {
+                        object.getPosition().x,
+                        object.getPosition().y,
+                        object.getAABB().width,
+                        object.getAABB().height
+                    };
+                }
+            }
+        }
+    }
+    for (const auto& layer : Parameters::villageMap.getLayers())
+    {
+        if (layer->getName() == "collisions")
+        {
+            auto* objectLayer =
+                dynamic_cast<tmx::ObjectGroup*>(layer.get());
+
+            if (!objectLayer)
+                continue;
+
+            for (const auto& object : objectLayer->getObjects())
+            {
+                Parameters::collisionRects.emplace_back(
+                    object.getPosition().x,
+                    object.getPosition().y,
+                    object.getAABB().width,
+                    object.getAABB().height
+                );
+            }
+        }
+    }
 }
 int main()
 {
@@ -111,6 +264,26 @@ int main()
                         object.getPosition().x,
                         object.getPosition().y
                     );
+                }
+                if (object.getName() == "toForest")
+                {
+                    Parameters::toForestRect =
+                    {
+                        object.getPosition().x,
+                        object.getPosition().y,
+                        object.getAABB().width,
+                        object.getAABB().height
+                    };
+                }
+                if (object.getName() == "toVillage")
+                {
+                    Parameters::toVillageRect =
+                    {
+                        object.getPosition().x,
+                        object.getPosition().y,
+                        object.getAABB().width,
+                        object.getAABB().height
+                    };
                 }
                 if (object.getName() == "KnightSpawn")
                 {
@@ -166,16 +339,16 @@ int main()
     float thickness = 100.f; // thickness of the collision boundaries
 
     // Left boundary
-    Parameters::collisionRects.emplace_back(-thickness, 0.f, thickness, mapHeight);
+    Parameters::boundaryRects.emplace_back(-thickness, 0.f, thickness, mapHeight);
 
     // Right boundary
-    Parameters::collisionRects.emplace_back(mapWidth, 0.f, thickness, mapHeight);
+    Parameters::boundaryRects.emplace_back(mapWidth, 0.f, thickness, mapHeight);
 
     // Top boundary
-    Parameters::collisionRects.emplace_back(0.f, -thickness, mapWidth, thickness);
+    Parameters::boundaryRects.emplace_back(0.f, -thickness, mapWidth, thickness);
 
     // Bottom boundary
-    Parameters::collisionRects.emplace_back(0.f, mapHeight, mapWidth, thickness);
+    Parameters::boundaryRects.emplace_back(0.f, mapHeight, mapWidth, thickness);
 
     // Camera boundaries
     float halfWidth = camera.getSize().x / 2.f;
@@ -186,8 +359,6 @@ int main()
 
     float minY = halfHeight;
     float maxY = mapHeight - halfHeight;
-
-
 
 
     while (window.isOpen())
@@ -206,6 +377,31 @@ int main()
         const float dt = clock.restart().asSeconds();
 
         GameSystems::update(dt);
+
+        if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+        {
+            // Village -> Forest
+            if (Parameters::currentMap ==
+                Parameters::MapType::Village)
+            {
+                if (Parameters::player.getGlobalBounds()
+                    .intersects(Parameters::toForestRect))
+                {
+                    loadForestMap();
+                }
+            }
+
+            // Forest -> Village
+            if (Parameters::currentMap ==
+                Parameters::MapType::Forest)
+            {
+                if (Parameters::player.getGlobalBounds()
+                    .intersects(Parameters::toVillageRect))
+                {
+                    loadVillageMap();
+                }
+            }
+        }
 
         sf::Vector2f cameraPosition =
             Parameters::player.getPosition();

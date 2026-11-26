@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="101">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="8" nextobjectid="104">
  <tileset firstgid="1" source="village_terrain.tsx"/>
  <tileset firstgid="229" source="village_buildings.tsx"/>
  <tileset firstgid="319" source="church.tsx"/>
@@ -146,6 +146,7 @@
   <object id="5" name="OrcSpawn" x="1632" y="1088.5" width="64" height="64"/>
   <object id="6" name="FairySpawn" x="384.333" y="1055.67" width="64" height="64"/>
   <object id="7" name="WizardEnd" x="1760" y="128.5" width="64" height="64"/>
+  <object id="101" name="toForest" x="1856" y="157" width="64" height="71.5"/>
  </objectgroup>
  <layer id="4" name="Tile Layer 3" width="60" height="40">
   <data encoding="csv">
@@ -220,10 +221,10 @@
   <object id="37" x="1114.17" y="717.167" width="21.5455" height="35"/>
   <object id="38" x="954.288" y="589.47" width="21.7273" height="35"/>
   <object id="39" x="1274.03" y="1068.17" width="21.9091" height="35"/>
-  <object id="40" x="-5.32907e-15" y="1193.33" width="1920" height="87.3333"/>
+  <object id="40" x="-5.32907e-15" y="1185.33" width="1920" height="95.3333"/>
   <object id="43" x="497.667" y="4.33333" width="124" height="236.167"/>
   <object id="44" x="498.667" y="0.33335" width="1422" height="74.6666"/>
-  <object id="45" x="1840.67" y="226.25" width="80" height="968.834"/>
+  <object id="45" x="1840.67" y="226.75" width="80" height="968.334"/>
   <object id="46" x="364" y="204.416" width="135" height="104.667"/>
   <object id="47" x="331" y="267.916" width="132.5" height="162.667"/>
   <object id="48" x="288.129" y="301.25" width="43.037" height="103.834"/>
@@ -241,7 +242,7 @@
   <object id="61" x="1532.42" y="383.5" width="99.5" height="49.25"/>
   <object id="62" x="1193.25" y="184.75" width="184.667" height="70"/>
   <object id="63" x="682.75" y="383.417" width="194.833" height="52.8333"/>
-  <object id="64" x="1841.33" y="76.2497" width="80" height="86.834"/>
+  <object id="64" x="1841.33" y="76.2497" width="80" height="81.834"/>
   <object id="65" x="0" y="0.9165" width="498" height="146.167"/>
   <object id="83" x="71.75" y="694.5" width="61" height="25"/>
   <object id="85" x="137.5" y="886.5" width="61" height="25"/>
@@ -260,5 +261,7 @@
   <object id="98" x="1446.5" y="180" width="61" height="25"/>
   <object id="99" x="488.167" y="341.167" width="61" height="25"/>
   <object id="100" x="297.167" y="566.167" width="61" height="25"/>
+  <object id="102" x="1227" y="458.5" width="106" height="41.5"/>
+  <object id="103" x="1260.5" y="427" width="39.5" height="104"/>
  </objectgroup>
 </map>

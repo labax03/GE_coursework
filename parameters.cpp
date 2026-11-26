@@ -28,3 +28,10 @@
 
     tmx::Map Parameters::villageMap;
     std::vector<sf::FloatRect> Parameters::collisionRects;
+    std::vector<sf::FloatRect> Parameters::boundaryRects;
+
+    sf::FloatRect Parameters::toForestRect;
+    sf::FloatRect Parameters::toVillageRect;
+
+    Parameters::MapType Parameters::currentMap =
+    Parameters::MapType::Village;

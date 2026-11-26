@@ -6,4 +6,7 @@ struct GameSystems
 	static void init();
 	static void render(sf::RenderWindow& window);
 	static void update(float dt);
+
+	void loadVillageMap();
+	void loadForestMap();
 };
