@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="41" nextobjectid="104">
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="60" height="40" tilewidth="32" tileheight="32" infinite="0" nextlayerid="41" nextobjectid="105">
  <tileset firstgid="1" source="forest_terrain.tsx"/>
  <tileset firstgid="229" source="tree.tsx"/>
  <tileset firstgid="245" source="forest_decor.tsx"/>
@@ -99,7 +99,7 @@
   <object id="4" x="149" y="141" width="191.667" height="51.6667"/>
   <object id="5" x="320" y="192.667" width="20.6667" height="62.6667"/>
   <object id="6" x="320.333" y="205.833" width="117" height="82.1667"/>
-  <object id="7" x="96.4848" y="254.606" width="32" height="65"/>
+  <object id="7" x="96.4848" y="256.606" width="32" height="63"/>
   <object id="8" x="128.75" y="313.75" width="32" height="6.5"/>
   <object id="9" x="160.75" y="313.75" width="255.625" height="102"/>
   <object id="10" x="320.75" y="287.75" width="95" height="26.25"/>
@@ -132,7 +132,7 @@
   <object id="37" x="32.134" y="927.864" width="224.232" height="32.2726"/>
   <object id="38" x="160.081" y="1024.02" width="735.94" height="32.2726"/>
   <object id="39" x="256.384" y="1056.11" width="703.493" height="32.2726"/>
-  <object id="40" x="955.634" y="1085.11" width="72.232" height="3.1476"/>
+  <object id="40" x="955.634" y="1085.11" width="67.6865" height="3.1476"/>
   <object id="42" x="32.259" y="1247.61" width="1890.78" height="32.2726"/>
   <object id="43" x="160.11" y="1151.36" width="1533.45" height="32.2726"/>
   <object id="45" x="479.993" y="608.062" width="448.026" height="32.0634"/>
@@ -194,8 +194,9 @@
   <object id="103" x="1018.29" y="900.754" width="39.4242" height="25.159"/>
  </objectgroup>
  <objectgroup id="40" name="spawns">
-  <object id="100" name="playerSpawn" x="31.6667" y="351.333" width="64" height="64"/>
+  <object id="100" name="forestSpawn" x="225.167" y="218.333" width="64" height="64"/>
   <object id="101" name="guySpawn" x="1697.5" y="352" width="64" height="64"/>
+  <object id="104" name="toVillage" x="-0.5" y="364.5" width="27" height="64"/>
  </objectgroup>
  <layer id="16" name="Tile Layer 3" width="60" height="40">
   <data encoding="csv">
