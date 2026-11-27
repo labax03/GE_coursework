@@ -30,6 +30,12 @@ void GameSystems::init() {
     // Create player sprite
     //Parameters::player.setTexture(Parameters::davequaviousTexture);
 
+    // scale up every charcter apart from davequavious and shlur
+    Parameters::elf.setScale(1.5f, 1.25f);
+    Parameters::orc.setScale(1.5f, 1.25f);
+    Parameters::knight.setScale(1.5f, 1.25f);
+    Parameters::wizard.setScale(1.5f, 1.25f);
+    Parameters::brandy.setScale(1.5f, 1.25f);
 
     // Centre origin so scaling looks better
     Parameters::player.setOrigin(
@@ -350,8 +356,9 @@ int main()
     int row = 4; // row 4 contains the idle sprite animations 
 
     sf::RenderWindow window(
-        sf::VideoMode(800, 600),
-        "ScorchQuest"
+        sf::VideoMode::getDesktopMode(),
+        "ScorchQuest",
+        sf::Style::Fullscreen
     );
 
     std::cout << "Maximum texture size: "
@@ -368,8 +375,9 @@ int main()
     GameSystems::init();
 
     sf::View camera;
-    camera.setSize(800.f, 600.f);
+    camera.setSize(1024.f, 576.f);
     camera.setCenter(Parameters::player.getPosition());
+    camera.zoom(0.5f);
 
     // move player to PlayerSpawn object
     for (const auto& layer : Parameters::villageMap.getLayers())
@@ -521,6 +529,10 @@ int main()
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
+            {
+                window.close();
+            }
+            if (sf::Keyboard::isKeyPressed(sf::Keyboard::Escape))
             {
                 window.close();
             }

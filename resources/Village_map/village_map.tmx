@@ -140,11 +140,11 @@
  </layer>
  <objectgroup id="5" name="spawns">
   <object id="1" name="PlayerSpawn" x="32.6667" y="480.333" width="64" height="64"/>
-  <object id="2" name="WizardSpawn" x="224.75" y="448" width="64" height="64"/>
-  <object id="3" name="DavequaviousSpawn" x="576.208" y="384.167" width="64" height="64"/>
-  <object id="4" name="KnightSpawn" x="1184.5" y="320.5" width="64" height="64"/>
-  <object id="5" name="OrcSpawn" x="1632" y="1088.5" width="64" height="64"/>
-  <object id="6" name="FairySpawn" x="384.333" y="1055.67" width="64" height="64"/>
+  <object id="2" name="WizardSpawn" x="211.75" y="423" width="64" height="64"/>
+  <object id="3" name="DavequaviousSpawn" x="582.708" y="365.167" width="64" height="64"/>
+  <object id="4" name="KnightSpawn" x="1182.5" y="302" width="64" height="64"/>
+  <object id="5" name="OrcSpawn" x="1617.5" y="1067" width="64" height="64"/>
+  <object id="6" name="FairySpawn" x="385.833" y="1022.67" width="64" height="64"/>
   <object id="7" name="WizardEnd" x="1760" y="128.5" width="64" height="64"/>
   <object id="101" name="toForest" x="1856" y="157" width="64" height="71.5"/>
   <object id="104" name="toHouse" x="192.667" y="148" width="64" height="28"/>

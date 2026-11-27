@@ -14,8 +14,8 @@
   <object id="1" x="0.0391787" y="0.220997" width="575.736" height="127.568"/>
  </objectgroup>
  <objectgroup id="3" name="spawns">
-  <object id="2" name="BrandySpawn" x="469" y="145" width="64" height="64"/>
-  <object id="3" name="ShlurSpawn" x="390.167" y="144.5" width="64" height="64"/>
+  <object id="2" name="BrandySpawn" x="471.333" y="130" width="64" height="64"/>
+  <object id="3" name="ShlurSpawn" x="415.5" y="136.167" width="64" height="64"/>
   <object id="4" name="toVillage" x="255.667" y="127.666" width="64" height="56.6667"/>
   <object id="5" name="HouseSpawn" x="93" y="156" width="64" height="56.6667"/>
  </objectgroup>
