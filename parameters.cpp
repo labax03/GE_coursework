@@ -10,12 +10,18 @@
     NPC Parameters::elf("elf.png"); 
     NPC Parameters::knight("knight.png");
     NPC Parameters::orc("orc.png");
+    NPC Parameters::wizard("wizard.png");
+    NPC Parameters::brandy("brandy.png");
+    NPC Parameters::shlur("shlur.png");
     int Parameters::currentFrame = 0;
 
     sf::Texture Parameters::davequaviousTexture;
     sf::Texture Parameters::orcTexture;
     sf::Texture Parameters::elfTexture;
     sf::Texture Parameters::knightTexture;
+    sf::Texture Parameters::wizardTexture;
+    sf::Texture Parameters::brandyTexture;
+    sf::Texture Parameters::shlurTexture;
 
     // Background
     sf::Texture Parameters::backgroundTexture;
@@ -32,6 +38,7 @@
 
     sf::FloatRect Parameters::toForestRect;
     sf::FloatRect Parameters::toVillageRect;
+    sf::FloatRect Parameters::toHouseRect;
 
     Parameters::MapType Parameters::currentMap =
     Parameters::MapType::Village;

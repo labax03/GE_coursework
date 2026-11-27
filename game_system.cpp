@@ -44,6 +44,9 @@ void GameSystems::update(float dt) {
     Parameters::elf.update(dt);
     Parameters::orc.update(dt);
     Parameters::knight.update(dt);
+    Parameters::wizard.update(dt);
+    Parameters::brandy.update(dt);
+    Parameters::shlur.update(dt);
 }
 
 void GameSystems::render(sf::RenderWindow& window)
@@ -51,15 +54,33 @@ void GameSystems::render(sf::RenderWindow& window)
     // Background
     window.draw(Parameters::backgroundSprite);
 
+    // have NPCs not spawn on every map
+    if (Parameters::currentMap ==
+        Parameters::MapType::Village)
+    {
+        window.draw(Parameters::elf);
+        window.draw(Parameters::orc);
+        window.draw(Parameters::knight);
+        window.draw(Parameters::wizard);
+    }
+
+    if (Parameters::currentMap ==
+        Parameters::MapType::House)
+    {
+        window.draw(Parameters::brandy);
+        window.draw(Parameters::shlur);
+    }
+
     // Player
     window.draw(Parameters::player);
-    window.draw(Parameters::elf);
-    window.draw(Parameters::orc);
-    window.draw(Parameters::knight);
-
 
     // Foreground
-    window.draw(Parameters::foregroundSprite);
+    if (Parameters::currentMap !=
+        Parameters::MapType::House)
+    {
+        window.draw(Parameters::foregroundSprite);
+    }
+
 
 }
 
@@ -115,6 +136,101 @@ void loadForestMap()
                         object.getAABB().width,
                         object.getAABB().height
                     };
+                }
+                if (object.getName() == "toHouse")
+                {
+                    Parameters::toHouseRect =
+                    {
+                        object.getPosition().x,
+                        object.getPosition().y,
+                        object.getAABB().width,
+                        object.getAABB().height
+                    };
+                }
+            }
+        }
+    }
+    for (const auto& layer : Parameters::villageMap.getLayers())
+    {
+        if (layer->getName() == "collisions")
+        {
+            auto* objectLayer =
+                dynamic_cast<tmx::ObjectGroup*>(layer.get());
+
+            if (!objectLayer)
+                continue;
+
+            for (const auto& object : objectLayer->getObjects())
+            {
+                Parameters::collisionRects.emplace_back(
+                    object.getPosition().x,
+                    object.getPosition().y,
+                    object.getAABB().width,
+                    object.getAABB().height
+                );
+            }
+        }
+    }
+}
+
+void loadHouseMap()
+{
+    Parameters::collisionRects.clear();
+
+    Parameters::villageMap.load(
+        "Debug/res/Village_map/brandy_house/brandy_house.tmx");
+
+    Parameters::backgroundTexture.loadFromFile(
+        "Debug/res/Village_map/brandy_house/brandy_house.png");
+
+    Parameters::currentMap =
+        Parameters::MapType::House;
+
+
+    for (const auto& layer : Parameters::villageMap.getLayers())
+    {
+        if (layer->getName() == "spawns")
+        {
+            auto* objectLayer =
+                dynamic_cast<tmx::ObjectGroup*>(layer.get());
+
+            if (!objectLayer)
+                continue;
+
+            for (const auto& object : objectLayer->getObjects())
+            {
+                if (object.getName() == "HouseSpawn")
+                {
+                    Parameters::player.setPosition(
+                        object.getPosition().x,
+                        object.getPosition().y
+                    );
+                }
+
+                if (object.getName() == "toVillage")
+                {
+                    Parameters::toVillageRect =
+                    {
+                        object.getPosition().x,
+                        object.getPosition().y,
+                        object.getAABB().width,
+                        object.getAABB().height
+                    };
+                }
+                if (object.getName() == "BrandySpawn")
+                {
+                    Parameters::brandy.setPosition(
+                        object.getPosition().x,
+                        object.getPosition().y
+                    );
+                }
+
+                if (object.getName() == "ShlurSpawn")
+                {
+                    Parameters::shlur.setPosition(
+                        object.getPosition().x,
+                        object.getPosition().y
+                    );
                 }
             }
         }
@@ -187,6 +303,16 @@ void loadVillageMap()
                 if (object.getName() == "toForest")
                 {
                     Parameters::toForestRect =
+                    {
+                        object.getPosition().x,
+                        object.getPosition().y,
+                        object.getAABB().width,
+                        object.getAABB().height
+                    };
+                }
+                if (object.getName() == "toHouse")
+                {
+                    Parameters::toHouseRect =
                     {
                         object.getPosition().x,
                         object.getPosition().y,
@@ -285,6 +411,16 @@ int main()
                         object.getAABB().height
                     };
                 }
+                if (object.getName() == "toHouse")
+                {
+                    Parameters::toHouseRect =
+                    {
+                        object.getPosition().x,
+                        object.getPosition().y,
+                        object.getAABB().width,
+                        object.getAABB().height
+                    };
+                }
                 if (object.getName() == "KnightSpawn")
                 {
                     Parameters::knight.setPosition(
@@ -302,6 +438,27 @@ int main()
                 if (object.getName() == "OrcSpawn")
                 {
                     Parameters::orc.setPosition(
+                        object.getPosition().x,
+                        object.getPosition().y
+                    );
+                }
+                if (object.getName() == "WizardSpawn")
+                {
+                    Parameters::wizard.setPosition(
+                        object.getPosition().x,
+                        object.getPosition().y
+                    );
+                }
+                if (object.getName() == "BrandySpawn")
+                {
+                    Parameters::brandy.setPosition(
+                        object.getPosition().x,
+                        object.getPosition().y
+                    );
+                }
+                if (object.getName() == "ShlurSpawn")
+                {
+                    Parameters::shlur.setPosition(
                         object.getPosition().x,
                         object.getPosition().y
                     );
@@ -340,16 +497,12 @@ int main()
 
     // Left boundary
     Parameters::boundaryRects.emplace_back(-thickness, 0.f, thickness, mapHeight);
-
     // Right boundary
     Parameters::boundaryRects.emplace_back(mapWidth, 0.f, thickness, mapHeight);
-
     // Top boundary
     Parameters::boundaryRects.emplace_back(0.f, -thickness, mapWidth, thickness);
-
     // Bottom boundary
     Parameters::boundaryRects.emplace_back(0.f, mapHeight, mapWidth, thickness);
-
     // Camera boundaries
     float halfWidth = camera.getSize().x / 2.f;
     float halfHeight = camera.getSize().y / 2.f;
@@ -394,6 +547,27 @@ int main()
             // Forest -> Village
             if (Parameters::currentMap ==
                 Parameters::MapType::Forest)
+            {
+                if (Parameters::player.getGlobalBounds()
+                    .intersects(Parameters::toVillageRect))
+                {
+                    loadVillageMap();
+                }
+            }
+
+            // Village -> House
+            if (Parameters::currentMap ==
+                Parameters::MapType::Village)
+            {
+                if (Parameters::player.getGlobalBounds()
+                    .intersects(Parameters::toHouseRect))
+                {
+                    loadHouseMap();
+                }
+            }
+            // House -> Village
+            if (Parameters::currentMap ==
+                Parameters::MapType::House)
             {
                 if (Parameters::player.getGlobalBounds()
                     .intersects(Parameters::toVillageRect))

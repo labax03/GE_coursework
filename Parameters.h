@@ -10,7 +10,8 @@ struct Parameters {
     enum class MapType
     {
         Village,
-        Forest
+        Forest,
+        House
     };
 
     static MapType currentMap;
@@ -34,6 +35,9 @@ struct Parameters {
     static NPC elf; // sprites will be held a class variable when we switch to object oriented 
     static NPC orc; // 
     static NPC knight; // 
+    static NPC wizard;
+    static NPC brandy;
+    static NPC shlur;
 
     static constexpr float time_step = 0.017f; //60 fps
     static constexpr float animationSpeed = 0.12f;
@@ -43,6 +47,9 @@ struct Parameters {
     static sf::Texture orcTexture;
     static sf::Texture elfTexture;
     static sf::Texture knightTexture;
+    static sf::Texture wizardTexture;
+    static sf::Texture brandyTexture;
+    static sf::Texture shlurTexture;
 
     // Background
     static sf::Texture backgroundTexture;
@@ -58,4 +65,5 @@ struct Parameters {
 
     static sf::FloatRect toForestRect;
     static sf::FloatRect toVillageRect;
+    static sf::FloatRect toHouseRect;
 };
