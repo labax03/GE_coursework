@@ -48,11 +48,11 @@
             "expandedObjectLayers": [
                 39
             ],
-            "scale": 0.5,
-            "selectedLayer": 2,
+            "scale": 1,
+            "selectedLayer": 4,
             "viewCenter": {
-                "x": 965,
-                "y": 638
+                "x": 1035.5,
+                "y": 594.5
             }
         },
         "C:/Users/User/GE_coursework/resources/forest_map/forest_terrain.tsx": {
