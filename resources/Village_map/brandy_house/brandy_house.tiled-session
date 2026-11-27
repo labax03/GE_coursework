@@ -1,5 +1,5 @@
 {
-    "activeFile": "C:/Users/User/GE_coursework/resources/Village_map/village_map.tmx",
+    "activeFile": "C:/Users/User/GE_coursework/resources/forest_map/forest_map.tmx",
     "expandedProjectPaths": [
         "."
     ],
@@ -48,11 +48,11 @@
             "expandedObjectLayers": [
                 39
             ],
-            "scale": 0.33,
+            "scale": 0.5,
             "selectedLayer": 2,
             "viewCenter": {
-                "x": 965.1515151515151,
-                "y": 639.3939393939394
+                "x": 965,
+                "y": 638
             }
         },
         "C:/Users/User/GE_coursework/resources/forest_map/forest_terrain.tsx": {
@@ -105,12 +105,12 @@
     ],
     "project": "brandy_house.tiled-project",
     "recentFiles": [
-        "C:/Users/User/GE_coursework/resources/forest_map/forest_map.tmx",
-        "C:/Users/User/GE_coursework/resources/forest_map/forest_terrain.tsx",
-        "C:/Users/User/GE_coursework/resources/forest_map/tree.tsx",
-        "C:/Users/User/GE_coursework/resources/forest_map/forest_decor.tsx",
-        "C:/Users/User/GE_coursework/resources/forest_map/cabin.tsx",
         "C:/Users/User/GE_coursework/resources/Village_map/village_map.tmx",
+        "C:/Users/User/GE_coursework/resources/forest_map/cabin.tsx",
+        "C:/Users/User/GE_coursework/resources/forest_map/forest_decor.tsx",
+        "C:/Users/User/GE_coursework/resources/forest_map/tree.tsx",
+        "C:/Users/User/GE_coursework/resources/forest_map/forest_terrain.tsx",
+        "C:/Users/User/GE_coursework/resources/forest_map/forest_map.tmx",
         "C:/Users/User/GE_coursework/resources/forest_map/chest.tsx",
         "C:/Users/User/GE_coursework/resources/forest_map/forest_trees.tsx",
         "brandy_house.tmx",
