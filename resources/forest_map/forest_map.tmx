@@ -259,31 +259,31 @@
   <object id="78" x="831.58" y="732.962" width="32.0909" height="99.3257"/>
   <object id="79" x="863.83" y="731.587" width="32.0909" height="87.2424"/>
   <object id="80" x="887.159" y="724.337" width="72.6364" height="71.5757"/>
-  <object id="81" x="422" y="-12.125" width="38" height="74.25"/>
-  <object id="82" x="550" y="181.625" width="38.5" height="40.75"/>
+  <object id="81" x="422" y="-12.125" width="38" height="88.5833"/>
+  <object id="82" x="550" y="181.625" width="38.5" height="52.75"/>
   <object id="83" x="486.25" y="-4.875" width="37.75" height="33.75"/>
   <object id="84" x="613.75" y="-7.125" width="38.5" height="37.25"/>
-  <object id="85" x="901.25" y="119.542" width="38.5" height="38.5833"/>
-  <object id="86" x="740.75" y="188.708" width="38.5" height="32.9167"/>
+  <object id="85" x="901.25" y="119.542" width="38.5" height="53.5833"/>
+  <object id="86" x="740.75" y="188.708" width="38.5" height="54.9167"/>
   <object id="87" x="832.659" y="-0.125" width="270.091" height="85.75"/>
-  <object id="88" x="1221.93" y="63.875" width="38.5" height="30.25"/>
-  <object id="89" x="1446.02" y="66.9962" width="38.5" height="27.5833"/>
+  <object id="88" x="1221.93" y="63.875" width="38.5" height="45.75"/>
+  <object id="89" x="1446.02" y="66.9962" width="38.5" height="43.0833"/>
   <object id="90" x="1824.58" y="63.2083" width="48.5" height="47.5"/>
   <object id="91" x="768.417" y="384.208" width="158.833" height="39.5833"/>
-  <object id="92" x="357.25" y="114.375" width="38.5" height="43.75"/>
-  <object id="93" x="325.75" y="-0.625" width="38.5" height="61.75"/>
+  <object id="92" x="357.25" y="114.375" width="38.5" height="60.0833"/>
+  <object id="93" x="325.75" y="-0.625" width="38.5" height="76.4167"/>
   <object id="94" x="292.25" y="-4.125" width="38.5" height="32.75"/>
-  <object id="95" x="263.25" y="55.0417" width="38.5" height="37.5833"/>
-  <object id="96" x="229.75" y="24.0417" width="38.5" height="37.5833"/>
-  <object id="97" x="165.75" y="85.375" width="38.5" height="41.25"/>
-  <object id="98" x="165.75" y="-4.625" width="38.5" height="33.25"/>
+  <object id="95" x="263.25" y="55.0417" width="38.5" height="49.5833"/>
+  <object id="96" x="229.75" y="24.0417" width="38.5" height="50.25"/>
+  <object id="97" x="165.75" y="85.375" width="38.5" height="58.9167"/>
+  <object id="98" x="165.75" y="-4.625" width="38.5" height="47.25"/>
   <object id="99" x="391.75" y="-5.125" width="38.5" height="35.25"/>
   <object id="102" x="997.288" y="863.795" width="119.091" height="38.784"/>
   <object id="103" x="1018.29" y="900.754" width="39.4242" height="25.159"/>
  </objectgroup>
  <objectgroup id="40" name="spawns">
   <object id="100" name="forestSpawn" x="225.167" y="218.333" width="64" height="64"/>
-  <object id="101" name="WizardSpawn" x="1697.5" y="352" width="64" height="64"/>
+  <object id="101" name="ForestWizardSpawn" x="1697.5" y="352" width="64" height="64"/>
   <object id="104" name="toVillage" x="-0.5" y="364.5" width="27" height="64"/>
  </objectgroup>
  <layer id="16" name="Tile Layer 3" width="60" height="40">

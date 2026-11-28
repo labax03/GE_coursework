@@ -143,16 +143,6 @@ void loadForestMap()
                         object.getAABB().height
                     };
                 }
-                if (object.getName() == "toHouse")
-                {
-                    Parameters::toHouseRect =
-                    {
-                        object.getPosition().x,
-                        object.getPosition().y,
-                        object.getAABB().width,
-                        object.getAABB().height
-                    };
-                }
             }
         }
     }
@@ -377,7 +367,7 @@ int main()
     sf::View camera;
     camera.setSize(1024.f, 576.f);
     camera.setCenter(Parameters::player.getPosition());
-    camera.zoom(0.5f);
+    camera.zoom(0.75f);
 
     // move player to PlayerSpawn object
     for (const auto& layer : Parameters::villageMap.getLayers())
