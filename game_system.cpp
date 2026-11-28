@@ -15,6 +15,27 @@ void GameSystems::init() {
     Parameters::backgroundTexture.loadFromFile("Debug/res/Village_map/village_background.png");
     Parameters::foregroundTexture.loadFromFile("Debug/res/Village_map/village_foreground.png");
 
+    if (!Parameters::font.loadFromFile(
+        "Debug/res/font.ttf"))
+    {
+        std::cout << "Font failed to load\n";
+    }
+
+    Parameters::interactText.setFont(
+        Parameters::font);
+
+    Parameters::interactText.setString("E");
+
+    Parameters::interactText.setCharacterSize(20);
+
+    Parameters::interactText.setFillColor(
+        sf::Color::White);
+
+    Parameters::interactText.setOutlineThickness(2.f);
+
+    Parameters::interactText.setOutlineColor(
+        sf::Color::Black);
+
     // Background sprites
     Parameters::backgroundSprite.setTexture(Parameters::backgroundTexture);
     Parameters::foregroundSprite.setTexture(Parameters::foregroundTexture);
@@ -79,6 +100,16 @@ void GameSystems::render(sf::RenderWindow& window)
 
     // Player
     window.draw(Parameters::player);
+
+    if (Parameters::showInteract)
+    {
+        Parameters::interactText.setPosition(
+            Parameters::player.getPosition().x - 10.f,
+            Parameters::player.getPosition().y - 70.f);
+
+        window.draw(
+            Parameters::interactText);
+    }
 
     // Foreground
     if (Parameters::currentMap !=
@@ -532,6 +563,26 @@ int main()
         const float dt = clock.restart().asSeconds();
 
         GameSystems::update(dt);
+
+        Parameters::showInteract = false;
+
+        if (Parameters::player.getGlobalBounds()
+            .intersects(Parameters::toForestRect))
+        {
+            Parameters::showInteract = true;
+        }
+
+        if (Parameters::player.getGlobalBounds()
+            .intersects(Parameters::toVillageRect))
+        {
+            Parameters::showInteract = true;
+        }
+
+        if (Parameters::player.getGlobalBounds()
+            .intersects(Parameters::toHouseRect))
+        {
+            Parameters::showInteract = true;
+        }
 
         if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
         {

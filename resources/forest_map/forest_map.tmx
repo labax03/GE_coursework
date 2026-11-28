@@ -284,7 +284,7 @@
  <objectgroup id="40" name="spawns">
   <object id="100" name="forestSpawn" x="225.167" y="218.333" width="64" height="64"/>
   <object id="101" name="ForestWizardSpawn" x="1697.5" y="352" width="64" height="64"/>
-  <object id="104" name="toVillage" x="-0.5" y="364.5" width="27" height="64"/>
+  <object id="104" name="toVillage" x="-0.5" y="364.5" width="12.5" height="52"/>
  </objectgroup>
  <layer id="16" name="Tile Layer 3" width="60" height="40">
   <data encoding="csv">

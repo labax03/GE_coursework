@@ -27,10 +27,13 @@
     sf::Texture Parameters::backgroundTexture;
     sf::Sprite Parameters::backgroundSprite;
 
+    sf::Font Parameters::font;
+    sf::Text Parameters::interactText;
+    bool Parameters::showInteract = false;
+
     // Foreground
     sf::Texture Parameters::foregroundTexture;
     sf::Sprite Parameters::foregroundSprite;
-
 
     tmx::Map Parameters::villageMap;
     std::vector<sf::FloatRect> Parameters::collisionRects;

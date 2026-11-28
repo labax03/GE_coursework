@@ -66,4 +66,8 @@ struct Parameters {
     static sf::FloatRect toForestRect;
     static sf::FloatRect toVillageRect;
     static sf::FloatRect toHouseRect;
+
+    static sf::Font font;
+    static sf::Text interactText;
+    static bool showInteract;
 };

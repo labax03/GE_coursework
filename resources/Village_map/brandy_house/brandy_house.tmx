@@ -16,7 +16,7 @@
  <objectgroup id="3" name="spawns">
   <object id="2" name="BrandySpawn" x="471.333" y="130" width="64" height="64"/>
   <object id="3" name="ShlurSpawn" x="415.5" y="136.167" width="64" height="64"/>
-  <object id="4" name="toVillage" x="255.667" y="127.666" width="64" height="56.6667"/>
+  <object id="4" name="toVillage" x="267.334" y="127.666" width="41.6667" height="10.6667"/>
   <object id="5" name="HouseSpawn" x="93" y="156" width="64" height="56.6667"/>
  </objectgroup>
 </map>
